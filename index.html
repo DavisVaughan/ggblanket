@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,20 +79,20 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>{ggblanket} is a package of wrapper functions around the amazing {ggplot2} package.</p>
-<p>The objective is to <strong>make beautiful {ggplot2} visualisation simpler</strong>.</p>
+<p>The objective is to <strong>simplify beautiful {ggplot2} visualisation</strong>.</p>
 <p>With this in mind, the {ggblanket} package:</p>
 <ul>
 <li>uses quick functions that wrap around a single geom</li>
 <li>merges col and fill aesthetics into a single col aesthetic</li>
 <li>provides colour customisation via a pal argument</li>
 <li>treats faceting as an aesthetic</li>
-<li>pushes x and y limits to the max of the x and y breaks by default</li>
+<li>pushes x and y limits to the max of x and y breaks with no expanding by default</li>
 <li>arranges horizontal geom y and col labels etc to be in correct order</li>
+<li>provides arguments for scale adjustment and legend placement</li>
+<li>changes default colours, alphas, widths and themes</li>
 <li>converts titles to sentence case by default</li>
 <li>converts numeric labels to comma format by default</li>
-<li>provides arguments for scale adjustment and legend placement</li>
 <li>allows users to access all other non-aesthetic geom functionality</li>
-<li>changes default colours, alphas, widths and themes</li>
 </ul>
 </div>
 <div class="section level2">
@@ -182,7 +182,7 @@
     x <span class="op">=</span> <span class="va">species</span>,
     y <span class="op">=</span> <span class="va">body_mass_g</span>,
     col <span class="op">=</span> <span class="va">flipper_length_mm</span>,
-    col_intervals <span class="op">=</span> <span class="op">~</span><span class="fu">santoku</span><span class="fu">::</span><span class="fu">chop_quantiles</span><span class="op">(</span><span class="va">.x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>,
+    col_intervals <span class="op">=</span> <span class="op">~</span><span class="fu">santoku</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/santoku/reference/chop_quantiles.html" class="external-link">chop_quantiles</a></span><span class="op">(</span><span class="va">.x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>,
     position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>, 
     y_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-9-1.png"><!-- --></p>

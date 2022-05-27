@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,7 @@
 <dt>x_labels</dt>
 <dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
 <dt>x_limits</dt>
-<dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. Use c(NA, NA) for the min and max.</p></dd>
+<dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. For a numeric variable, use c(NA, NA) to use the min and max as limits. For a date variable, load lubridate package and use c(NA_Date_, NA_Date_) to use the min and max as limits.</p></dd>
 <dt>x_oob</dt>
 <dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
 <dt>x_title</dt>
@@ -176,7 +176,7 @@
 <dt>y_labels</dt>
 <dd><p>A functiyon to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
 <dt>y_limits</dt>
-<dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. Use c(NA, NA) for the min and max.</p></dd>
+<dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. For a numeric variable, use c(NA, NA) to use the min and max as limits. For a date variable, load lubridate package and use c(NA_Date_, NA_Date_) to use the min and max as limits.</p></dd>
 <dt>y_oob</dt>
 <dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
 <dt>y_title</dt>
@@ -260,6 +260,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} merges col and fill aesthetics into a single col aesthetic</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 15 rows containing missing values (geom_bar).</span>
 <span class="r-plt img"><img src="gg_histogram-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_histogram</span><span class="op">(</span><span class="va">economics_long</span>, x <span class="op">=</span> <span class="va">value</span>, facet <span class="op">=</span> <span class="va">variable</span>,</span>
