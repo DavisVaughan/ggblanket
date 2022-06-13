@@ -62,6 +62,7 @@
   col <span class="op">=</span> <span class="cn">NULL</span>,
   facet <span class="op">=</span> <span class="cn">NULL</span>,
   group <span class="op">=</span> <span class="cn">NULL</span>,
+  text <span class="op">=</span> <span class="cn">NULL</span>,
   stat <span class="op">=</span> <span class="st">"identity"</span>,
   position <span class="op">=</span> <span class="st">"identity"</span>,
   pal <span class="op">=</span> <span class="cn">NULL</span>,
@@ -117,124 +118,245 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>A data frame or tibble.</p></dd>
+
+
 <dt>x</dt>
 <dd><p>Unquoted x aesthetic variable.</p></dd>
+
+
 <dt>xmin</dt>
 <dd><p>Unquoted xmin aesthetic variable.</p></dd>
+
+
 <dt>xmax</dt>
 <dd><p>Unquoted xmax aesthetic variable.</p></dd>
+
+
 <dt>y</dt>
 <dd><p>Unquoted y aesthetic variable.</p></dd>
+
+
 <dt>ymin</dt>
 <dd><p>Unquoted ymin aesthetic variable.</p></dd>
+
+
 <dt>ymax</dt>
 <dd><p>Unquoted ymax aesthetic variable.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>Unquoted col and fill aesthetic variable.</p></dd>
+
+
 <dt>facet</dt>
 <dd><p>Unquoted facet aesthetic variable.</p></dd>
+
+
 <dt>group</dt>
-<dd><p>Unquoted group aesthetic variable.</p></dd>
+<dd><p>Unquoted group aesthetic variable.#'</p></dd>
+
+
+<dt>text</dt>
+<dd><p>Unquoted text aesthetic variable, which can be used in combination with plotly::ggplotly(., tooltip = "text").</p></dd>
+
+
 <dt>stat</dt>
 <dd><p>Statistical transformation. A character string (e.g. "identity").</p></dd>
+
+
 <dt>position</dt>
 <dd><p>Position adjustment. Either a character string (e.g."identity"), or a function (e.g. ggplot2::position_identity()).</p></dd>
+
+
 <dt>pal</dt>
 <dd><p>Colours to use. A character vector of hex codes (or names).</p></dd>
+
+
 <dt>pal_na</dt>
 <dd><p>Colour to use for NA values. A character vector of a hex code (or name).</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>Opacity. A number between 0 and 1.</p></dd>
+
+
 <dt>size</dt>
 <dd><p>Size. A number 0 upwards.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>Width. A number 0 upwards.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments passed to the relevant ggplot2::geom_* function.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Title string.</p></dd>
+
+
 <dt>subtitle</dt>
 <dd><p>Subtitle string.</p></dd>
+
+
 <dt>coord</dt>
 <dd><p>Coordinate system.</p></dd>
+
+
 <dt>x_breaks</dt>
 <dd><p>For a numeric or date variable, a vector of breaks for the axis.</p></dd>
+
+
 <dt>x_breaks_n</dt>
 <dd><p>For a numeric or date variable, an integer guiding the number of breaks, as calculated by the pretty function.</p></dd>
+
+
 <dt>x_breaks_width</dt>
 <dd><p>For a numeric or date variable, the width of breaks, as calculated by the scales::fullseq function.</p></dd>
+
+
 <dt>x_expand</dt>
 <dd><p>Add padding to the limits with the ggplot2::expansion function, or a vector of length 2.</p></dd>
+
+
 <dt>x_labels</dt>
 <dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+
+
 <dt>x_limits</dt>
 <dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. For a numeric variable, use c(NA, NA) to use the min and max as limits. For a date variable, load lubridate package and use c(NA_Date_, NA_Date_) to use the min and max as limits.</p></dd>
+
+
 <dt>x_oob</dt>
 <dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
+
+
 <dt>x_title</dt>
 <dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+
+
 <dt>x_zero</dt>
 <dd><p>For a numeric variable, TRUE or FALSE of whether the axis should include zero. Defaults to FALSE.</p></dd>
+
+
 <dt>x_zero_mid</dt>
 <dd><p>For a numeric variable, TRUE or FALSE of whether to put zero in the middle of the axis. Defaults to FALSE.</p></dd>
+
+
 <dt>y_breaks</dt>
 <dd><p>For a numeric or date variable, a vector of breaks for the axis.</p></dd>
+
+
 <dt>y_breaks_n</dt>
 <dd><p>For a numeric or date variable, an integer guiding the number of breaks, as calculated by the pretty function.</p></dd>
+
+
 <dt>y_breaks_width</dt>
 <dd><p>For a numeric or date variable, the width of breaks, as calculated by the scales::fullseq function.</p></dd>
+
+
 <dt>y_expand</dt>
 <dd><p>Add padding to the limits with the ggplot2::expansion function, or a vector of length 2.</p></dd>
+
+
 <dt>y_labels</dt>
 <dd><p>A functiyon to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+
+
 <dt>y_limits</dt>
 <dd><p>For a numeric or date variable, a vector of length 2 to determine the limits of the axis. For a numeric variable, use c(NA, NA) to use the min and max as limits. For a date variable, load lubridate package and use c(NA_Date_, NA_Date_) to use the min and max as limits.</p></dd>
+
+
 <dt>y_oob</dt>
 <dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
+
+
 <dt>y_title</dt>
 <dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+
+
 <dt>y_zero</dt>
 <dd><p>For a numeric variable, TRUE or FALSE of whether the axis should include zero. Defaults to FALSE.</p></dd>
+
+
 <dt>y_zero_mid</dt>
 <dd><p>For a numeric variable, TRUE or FALSE of whether to put zero in the middle of the axis. Defaults to FALSE.</p></dd>
+
+
 <dt>col_breaks</dt>
 <dd><p>A vector of breaks. For a categorical col variable, this links pal values with col variable values dropping those not used. For a numeric variable where col_intervals is NULL, this only affects the labels on the legend.</p></dd>
+
+
 <dt>col_breaks_n</dt>
 <dd><p>For a numeric variable where col_intervals is NULL, an integer guiding the number of breaks, as calculated by the pretty function.</p></dd>
+
+
 <dt>col_breaks_width</dt>
 <dd><p>For a numeric variable, the width of breaks, as calculated by the scales::fullseq function.</p></dd>
+
+
 <dt>col_intervals</dt>
 <dd><p>A function to cut or chop the numeric variable into intervals, including in rlang lambda format (e.g. ~ santoku::chop_mean_sd(.x, drop = FALSE)).</p></dd>
+
+
 <dt>col_labels</dt>
 <dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If categorical, accepts a named vector (e.g. c(value = "label", ...)). Note this does not affect where col_intervals is not NULL.</p></dd>
+
+
 <dt>col_legend_place</dt>
 <dd><p>The place for the legend. "r" for right, "b" for bottom, "t" for top, or "l" for left.</p></dd>
+
+
 <dt>col_legend_ncol</dt>
 <dd><p>The number of columns for the legend elements.</p></dd>
+
+
 <dt>col_legend_nrow</dt>
 <dd><p>The number of rows for the legend elements.</p></dd>
+
+
 <dt>col_limits</dt>
 <dd><p>A vector of limits. For a categorical col variable, this links pal values with col variable values keeping those not used. For a numeric variable where col_intervals is NULL, this will make all values outside the limits coloured NA.</p></dd>
+
+
 <dt>col_title</dt>
 <dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+
+
 <dt>facet_intervals</dt>
 <dd><p>A function to cut or chop the numeric variable into intervals, including in rlang lambda format (e.g. ~ santoku::chop_mean_sd(.x, drop = FALSE)).</p></dd>
+
+
 <dt>facet_labels</dt>
 <dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+
+
 <dt>facet_ncol</dt>
 <dd><p>The number of columns of facetted plots.</p></dd>
+
+
 <dt>facet_nrow</dt>
 <dd><p>The number of rows of facetted plots.</p></dd>
+
+
 <dt>facet_scales</dt>
 <dd><p>Whether facet_scales should be "fixed" across facets, "free" in both directions, or free in just one direction (i.e. "free_x" or "free_y"). Defaults to "fixed".</p></dd>
+
+
 <dt>caption</dt>
 <dd><p>Caption title string.</p></dd>
+
+
 <dt>theme</dt>
 <dd><p>A ggplot2 theme.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A ggplot object.</p>
+    
+
+<p>A ggplot object.</p>
     </div>
 
     <div class="section level2">
@@ -288,7 +410,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
