@@ -70,6 +70,7 @@
   alpha <span class="op">=</span> <span class="fl">0.5</span>,
   size <span class="op">=</span> <span class="fl">0.5</span>,
   width <span class="op">=</span> <span class="cn">NULL</span>,
+  titles <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">...</span>,
   title <span class="op">=</span> <span class="cn">NULL</span>,
   subtitle <span class="op">=</span> <span class="cn">NULL</span>,
@@ -153,7 +154,7 @@
 
 
 <dt>group</dt>
-<dd><p>Unquoted group aesthetic variable.#'</p></dd>
+<dd><p>Unquoted group aesthetic variable.</p></dd>
 
 
 <dt>text</dt>
@@ -186,6 +187,10 @@
 
 <dt>width</dt>
 <dd><p>Width. A number 0 upwards.</p></dd>
+
+
+<dt>titles</dt>
+<dd><p>A function to format the x, y and col titles, including in rlang lambda format.</p></dd>
 
 
 <dt>...</dt>
@@ -221,7 +226,7 @@
 
 
 <dt>x_labels</dt>
-<dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+<dd><p>A function to format the scale labels, including in rlang lambda format.  If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
 
 
 <dt>x_limits</dt>
@@ -261,7 +266,7 @@
 
 
 <dt>y_labels</dt>
-<dd><p>A functiyon to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+<dd><p>A functiyon to format the scale labels, including in rlang lambda format.  If numeric, accepts a vector. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
 
 
 <dt>y_limits</dt>
@@ -301,7 +306,7 @@
 
 
 <dt>col_labels</dt>
-<dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If categorical, accepts a named vector (e.g. c(value = "label", ...)). Note this does not affect where col_intervals is not NULL.</p></dd>
+<dd><p>A function to format the scale labels, including in rlang lambda format.  If categorical, accepts a named vector (e.g. c(value = "label", ...)). Note this does not affect where col_intervals is not NULL.</p></dd>
 
 
 <dt>col_legend_place</dt>
@@ -329,7 +334,7 @@
 
 
 <dt>facet_labels</dt>
-<dd><p>A function to format the scale labels, including in rlang lambda format. Use ~.x to remove default transformation. If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
+<dd><p>A function to format the scale labels, including in rlang lambda format.  If categorical, accepts a named vector (e.g. c(value = "label", ...)).</p></dd>
 
 
 <dt>facet_ncol</dt>
