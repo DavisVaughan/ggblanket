@@ -82,7 +82,7 @@
 <p>The objective is to <strong>simplify beautiful {ggplot2} visualisation</strong>.</p>
 <p>With this in mind, the {ggblanket} package:</p>
 <ol style="list-style-type: decimal">
-<li>uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot()</a></code> call with a single <code>ggplot2::geom_*</code> function</li>
+<li>uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot</a></code> call with a single <code>ggplot2::geom_*</code> function</li>
 <li>merges col and fill aesthetics into a single col aesthetic</li>
 <li>provides colour customisation via pal and alpha arguments</li>
 <li>treats faceting as an aesthetic</li>
@@ -119,7 +119,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/davidhodge931/ggblanket/" class="external-link">ggblanket</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Tazinho/snakecase" class="external-link">snakecase</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
-<ol style="list-style-type: decimal"><li>{ggblanket} uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot()</a></code> call with a single <code>ggplot2::geom_*</code> function</li></ol>
+<ol style="list-style-type: decimal"><li>{ggblanket} uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot</a></code> call with a single <code>ggplot2::geom_*</code> function</li></ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Width</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span>, col <span class="op">=</span> <span class="va">Species</span><span class="op">)</span></code></pre></div>
