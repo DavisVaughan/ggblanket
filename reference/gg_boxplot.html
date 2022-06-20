@@ -174,7 +174,7 @@
 
 
 <dt>titles</dt>
-<dd><p>A function to format the x, y and col titles, including in rlang lambda format.</p></dd>
+<dd><p>A function to format the x, y and col titles, including in rlang lambda format. Defaults to snakecase::to_sentence_case.</p></dd>
 
 
 <dt>title</dt>
@@ -364,32 +364,19 @@
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">class</span>, pal <span class="op">=</span> <span class="st">"#3366FF"</span>, alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-plt img"><img src="gg_boxplot-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">class</span>, outlier.colour <span class="op">=</span> <span class="st">"red"</span>, outlier.shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-plt img"><img src="gg_boxplot-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">class</span>, outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-plt img"><img src="gg_boxplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">class</span>, col <span class="op">=</span> <span class="va">drv</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} merges col and fill aesthetics into a single col aesthetic.</span>
-<span class="r-plt img"><img src="gg_boxplot-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gg_boxplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-plt img"><img src="gg_boxplot-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gg_boxplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">carat</span>, <span class="va">price</span>, group <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html" class="external-link">cut_width</a></span><span class="op">(</span><span class="va">carat</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-plt img"><img src="gg_boxplot-10.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">carat</span>, <span class="va">price</span>, group <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html" class="external-link">cut_width</a></span><span class="op">(</span><span class="va">carat</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
-<span class="r-in">           outlier.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-plt img"><img src="gg_boxplot-11.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gg_boxplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
