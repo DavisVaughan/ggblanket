@@ -86,8 +86,8 @@
 <li>merges col and fill aesthetics into a single col aesthetic</li>
 <li>provides colour customisation via pal and alpha arguments</li>
 <li>treats faceting as an aesthetic</li>
+<li>provides default x and y scales that look super nice</li>
 <li>provides prefixed arguments for scale adjustment</li>
-<li>for numeric or dates, defaults limits to the min/max of x and y breaks and zero expanding</li>
 <li>arranges horizontal geom y and col labels etc to be in correct order</li>
 <li>converts unspecified titles to snakecase::to_sentence by default</li>
 <li>provides access to all of the relevant geom arg’s through the dots argument</li>
@@ -142,9 +142,37 @@
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="reference/gg_violin.html">gg_violin</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, facet <span class="op">=</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png"><!-- --></p>
+<ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides default x and y scales that look super nice.</li></ol>
+<p>For where:</p>
+<ul>
+<li>x categorical and y numeric/date: y_limits default to min/max of y_breaks with y_expand of c(0, 0)</li>
+<li>y categorical and x numeric/date: x_limits default to min/max of x_breaks with x_expand of c(0, 0)</li>
+<li>x numeric/date and y numeric/date: y_limits default to min/max of y_breaks with y_expand of c(0, 0), and x_limits default to NULL (i.e. min/max of x variable) and x_expand of c(0.025, 0.025)</li>
+</ul>
+<p>Hopefully, this is not too magical. But, I think this is a way to create a graph that visually has very nice symmetry, and is vital to the look and feel of {ggblanket}.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">storms</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>wind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wind</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/gg_col.html">gg_col</a></span><span class="op">(</span>
+    x <span class="op">=</span> <span class="va">year</span>,
+    y <span class="op">=</span> <span class="va">wind</span>,
+    x_labels <span class="op">=</span> <span class="op">~</span> <span class="va">.x</span>,
+    x_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
+    y_zero <span class="op">=</span> <span class="cn">TRUE</span>,
+    title <span class="op">=</span> <span class="st">"Storm wind speed"</span>,
+    subtitle <span class="op">=</span> <span class="st">"USA average storm wind speed, 1980\u20132020"</span>,
+    x_title <span class="op">=</span> <span class="st">"Year"</span>,
+    y_title <span class="op">=</span> <span class="st">"Wind speed (knots)"</span>,
+    caption <span class="op">=</span> <span class="st">"Source: NOAA"</span>,
+    theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>y_grid <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="op">)</span> </code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
 <ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides prefixed arguments for scale adjustment.</li></ol>
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>Available arguments are <code>*_limits</code>, <code>*_expand</code>, <code>*_labels</code>, <code>*_breaks_n</code>, and , <code>*_breaks</code>, <code>*_breaks_width</code>, <code>*_zero</code>, <code>*_zero_mid</code>, and <code>col_intervals</code> arguments.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="va">species</span>,
@@ -156,27 +184,6 @@
     y_zero <span class="op">=</span> <span class="cn">TRUE</span>,
     y_breaks_width <span class="op">=</span> <span class="fl">1500</span>
     <span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
-<ol start="6" style="list-style-type: decimal"><li>For numeric or date variables, {ggblanket} defaults limits to the min/max of x and y breaks and zero expanding.</li></ol>
-<p>This often looks visually very nice. However, it is simple to adjust to the {ggplot2} default by applying <code>*_limits = c(NA, NA)</code> or <code>c(lubridate::NA_Date_, lubridate::NA_Date_)</code> in combination with <code>*_expand = c(0.05, 0.05)</code>.</p>
-<p>You can also change the default theme gridlines to make this look more balanced.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">storms</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>wind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wind</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/gg_line.html">gg_line</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, 
-          y <span class="op">=</span> <span class="va">wind</span>, 
-          x_labels <span class="op">=</span> <span class="op">~</span><span class="va">.x</span>,
-          x_expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.05</span><span class="op">)</span>,
-          x_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-          y_zero <span class="op">=</span> <span class="cn">TRUE</span>,
-          title <span class="op">=</span> <span class="st">"Storm wind speed"</span>,
-          subtitle <span class="op">=</span> <span class="st">"USA average storm wind speed, 1975\u20132020"</span>, 
-          x_title <span class="op">=</span> <span class="st">"Year"</span>,
-          y_title <span class="op">=</span> <span class="st">"Wind speed (knots)"</span>, 
-          caption <span class="op">=</span> <span class="st">"Source: NOAA"</span>,
-          theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>y_grid <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png"><!-- --></p>
 <ol start="7" style="list-style-type: decimal"><li>{ggblanket} arranges horizontal geom y and col labels etc to be in correct order.</li></ol>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
