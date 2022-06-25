@@ -86,8 +86,8 @@
 <li>merges col and fill aesthetics into a single col aesthetic</li>
 <li>provides colour customisation via pal and alpha arguments</li>
 <li>treats faceting as an aesthetic</li>
-<li>provides default x and y scales that look super nice</li>
-<li>provides prefixed arguments for scale adjustment</li>
+<li>provides good-looking default x and y scales</li>
+<li>provides prefixed arguments for customisable scale adjustment</li>
 <li>arranges horizontal geom y and col labels etc to be in correct order</li>
 <li>converts unspecified titles to snakecase::to_sentence by default</li>
 <li>provides access to all of the relevant geom arg’s through the dots argument</li>
@@ -119,7 +119,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/davidhodge931/ggblanket/" class="external-link">ggblanket</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Tazinho/snakecase" class="external-link">snakecase</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
-<ol style="list-style-type: decimal"><li>{ggblanket} uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot</a></code> call with a single <code>ggplot2::geom_*</code> function</li></ol>
+<ol style="list-style-type: decimal"><li>{ggblanket} uses <code>gg_*</code> functions that each wrap a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot</a></code> call with a single <code>ggplot2::geom_*</code> function.</li></ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Width</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span>, col <span class="op">=</span> <span class="va">Species</span><span class="op">)</span></code></pre></div>
@@ -142,14 +142,13 @@
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="reference/gg_violin.html">gg_violin</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, facet <span class="op">=</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png"><!-- --></p>
-<ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides default x and y scales that look super nice.</li></ol>
+<ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides good-looking default x and y scales.</li></ol>
 <p>For where:</p>
 <ul>
 <li>x categorical and y numeric/date: y_limits default to min/max of y_breaks with y_expand of c(0, 0)</li>
 <li>y categorical and x numeric/date: x_limits default to min/max of x_breaks with x_expand of c(0, 0)</li>
 <li>x numeric/date and y numeric/date: y_limits default to min/max of y_breaks with y_expand of c(0, 0), and x_limits default to NULL (i.e. min/max of x variable) and x_expand of c(0.025, 0.025)</li>
 </ul>
-<p>Hopefully, this is not too magical. But, I think this is a way to create a graph that visually has very nice symmetry, and is vital to the look and feel of {ggblanket}.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">storms</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -158,9 +157,7 @@
   <span class="fu"><a href="reference/gg_col.html">gg_col</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="va">year</span>,
     y <span class="op">=</span> <span class="va">wind</span>,
-    x_labels <span class="op">=</span> <span class="op">~</span> <span class="va">.x</span>,
-    x_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-    y_zero <span class="op">=</span> <span class="cn">TRUE</span>,
+    y_include <span class="op">=</span> <span class="fl">0</span>,
     title <span class="op">=</span> <span class="st">"Storm wind speed"</span>,
     subtitle <span class="op">=</span> <span class="st">"USA average storm wind speed, 1980\u20132020"</span>,
     x_title <span class="op">=</span> <span class="st">"Year"</span>,
@@ -169,9 +166,9 @@
     theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>y_grid <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
   <span class="op">)</span> </code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
-<ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides prefixed arguments for scale adjustment.</li></ol>
+<ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides prefixed arguments for customisable scale adjustment.</li></ol>
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need.</p>
-<p>Available arguments are <code>*_limits</code>, <code>*_expand</code>, <code>*_labels</code>, <code>*_breaks_n</code>, and , <code>*_breaks</code>, <code>*_breaks_width</code>, <code>*_zero</code>, <code>*_zero_mid</code>, and <code>col_intervals</code> arguments.</p>
+<p>Available arguments are <code>*_limits</code>, <code>*_expand</code>, <code>*_labels</code>, <code>*_breaks</code>, <code>*_include</code>, and <code>col_intervals</code> arguments.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span>
@@ -181,8 +178,8 @@
     position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>, 
     col_intervals <span class="op">=</span> <span class="op">~</span> <span class="fu">santoku</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/santoku/reference/chop_quantiles.html" class="external-link">chop_quantiles</a></span><span class="op">(</span><span class="va">.x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>,
     col_legend_place <span class="op">=</span> <span class="st">"b"</span>,
-    y_zero <span class="op">=</span> <span class="cn">TRUE</span>,
-    y_breaks_width <span class="op">=</span> <span class="fl">1500</span>
+    y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1500</span><span class="op">)</span>, 
+    y_labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_number</a></span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png"><!-- --></p>
 <ol start="7" style="list-style-type: decimal"><li>{ggblanket} arranges horizontal geom y and col labels etc to be in correct order.</li></ol>
@@ -209,7 +206,7 @@
           title <span class="op">=</span> <span class="st">"Average penguin body mass"</span>,
           subtitle <span class="op">=</span> <span class="st">"Palmer Archipelago, Antarctica"</span>,
           theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>pal_axis <span class="op">=</span> <span class="st">"#ffffff"</span>, pal_ticks <span class="op">=</span> <span class="st">"#ffffff"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3.5</span>, col <span class="op">=</span> <span class="st">"#232323"</span><span class="op">)</span> </code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"#232323"</span><span class="op">)</span> </code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-10-1.png"><!-- --></p>
 <ol start="9" style="list-style-type: decimal"><li>{ggblanket} provides access to all of the relevant geom arg’s through the dots argument.</li></ol>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -226,13 +223,12 @@
 <p><code>ggplotly</code> won’t work in all situations, and with all functions and arguments. But it does work a lot of the time.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/add_tooltip_text.html">add_tooltip_text</a></span><span class="op">(</span>titles <span class="op">=</span> <span class="va">to_sentence_case</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="reference/add_tooltip_text.html">add_tooltip_text</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Width</span>, 
            y <span class="op">=</span> <span class="va">Sepal.Length</span>, 
            col <span class="op">=</span> <span class="va">Species</span>, 
            text <span class="op">=</span> <span class="va">text</span>, 
-           titles <span class="op">=</span> <span class="va">to_title_case</span>,
-           theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="st">"helvetica"</span>, x_grid <span class="op">=</span> <span class="cn">TRUE</span>, y_grid <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+           theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="st">"helvetica"</span>, y_grid <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">plotly</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">ggplotly</a></span><span class="op">(</span>tooltip <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/ggplotly_screenshot.png"></p>
 </div>
@@ -290,7 +286,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>
