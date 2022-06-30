@@ -319,6 +319,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">class</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 3 rows containing non-finite values (stat_boxplot).</span>
 <span class="r-plt img"><img src="gg_boxplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">class</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
@@ -342,12 +343,11 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 17180 rows containing missing values (stat_boxplot).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 3463 rows containing non-finite values (stat_boxplot).</span>
 <span class="r-plt img"><img src="gg_boxplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_boxplot</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">carat</span>, <span class="va">price</span>, group <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html" class="external-link">cut_width</a></span><span class="op">(</span><span class="va">carat</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 12 rows containing missing values (stat_boxplot).</span>
 <span class="r-plt img"><img src="gg_boxplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 </code></pre></div>
