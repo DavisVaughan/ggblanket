@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,29 +53,29 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gg_theme</span><span class="op">(</span>
   font <span class="op">=</span> <span class="st">""</span>,
-  font_title <span class="op">=</span> <span class="cn">NULL</span>,
-  font_subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  font_body <span class="op">=</span> <span class="cn">NULL</span>,
-  font_caption <span class="op">=</span> <span class="cn">NULL</span>,
-  size_title <span class="op">=</span> <span class="fl">11</span>,
-  size_subtitle <span class="op">=</span> <span class="fl">10</span>,
-  size_body <span class="op">=</span> <span class="fl">10</span>,
-  size_caption <span class="op">=</span> <span class="fl">9</span>,
-  size_axis <span class="op">=</span> <span class="fl">0.3</span>,
-  size_ticks <span class="op">=</span> <span class="fl">0.3</span>,
-  size_grid <span class="op">=</span> <span class="fl">0.2</span>,
-  style_title <span class="op">=</span> <span class="st">"bold"</span>,
-  style_subtitle <span class="op">=</span> <span class="st">"plain"</span>,
-  style_body <span class="op">=</span> <span class="st">"plain"</span>,
-  style_caption <span class="op">=</span> <span class="st">"plain"</span>,
-  pal_title <span class="op">=</span> <span class="st">"#000000"</span>,
-  pal_subtitle <span class="op">=</span> <span class="st">"#323232"</span>,
-  pal_body <span class="op">=</span> <span class="st">"#323232"</span>,
-  pal_caption <span class="op">=</span> <span class="st">"#7F7F7F"</span>,
-  pal_axis <span class="op">=</span> <span class="st">"#323232"</span>,
-  pal_ticks <span class="op">=</span> <span class="st">"#323232"</span>,
-  pal_background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ffffff"</span>, <span class="st">"#ffffff"</span><span class="op">)</span>,
-  pal_grid <span class="op">=</span> <span class="st">"#D3D3D3"</span>,
+  title_pal <span class="op">=</span> <span class="st">"#000000"</span>,
+  title_font <span class="op">=</span> <span class="cn">NULL</span>,
+  title_size <span class="op">=</span> <span class="fl">11</span>,
+  title_style <span class="op">=</span> <span class="st">"bold"</span>,
+  subtitle_font <span class="op">=</span> <span class="cn">NULL</span>,
+  subtitle_pal <span class="op">=</span> <span class="st">"#323232"</span>,
+  subtitle_size <span class="op">=</span> <span class="fl">10</span>,
+  subtitle_style <span class="op">=</span> <span class="st">"plain"</span>,
+  body_font <span class="op">=</span> <span class="cn">NULL</span>,
+  body_pal <span class="op">=</span> <span class="st">"#323232"</span>,
+  body_size <span class="op">=</span> <span class="fl">10</span>,
+  body_style <span class="op">=</span> <span class="st">"plain"</span>,
+  caption_font <span class="op">=</span> <span class="cn">NULL</span>,
+  caption_pal <span class="op">=</span> <span class="st">"#7F7F7F"</span>,
+  caption_size <span class="op">=</span> <span class="fl">9</span>,
+  caption_style <span class="op">=</span> <span class="st">"plain"</span>,
+  axis_size <span class="op">=</span> <span class="fl">0.3</span>,
+  axis_pal <span class="op">=</span> <span class="st">"#323232"</span>,
+  ticks_size <span class="op">=</span> <span class="fl">0.3</span>,
+  ticks_pal <span class="op">=</span> <span class="st">"#323232"</span>,
+  grid_size <span class="op">=</span> <span class="fl">0.2</span>,
+  grid_pal <span class="op">=</span> <span class="st">"#D3D3D3"</span>,
+  background_pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ffffff"</span>, <span class="st">"#f7f7f7"</span><span class="op">)</span>,
   x_grid <span class="op">=</span> <span class="cn">FALSE</span>,
   y_grid <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
@@ -87,96 +87,96 @@
 <dd><p>The font for all text to use. Defaults to "".</p></dd>
 
 
-<dt>font_title</dt>
-<dd><p>The font for the title. If NULL, inherits from font argument.</p></dd>
-
-
-<dt>font_subtitle</dt>
-<dd><p>The font for the subtitle. If NULL, inherits from font argument.</p></dd>
-
-
-<dt>font_body</dt>
-<dd><p>The font for all text other than the title, subtitle and caption. If NULL, inherits from font argument.</p></dd>
-
-
-<dt>font_caption</dt>
-<dd><p>The font for the caption. If NULL, inherits from font argument.</p></dd>
-
-
-<dt>size_title</dt>
-<dd><p>The size of the title font. Defaults to 11.</p></dd>
-
-
-<dt>size_subtitle</dt>
-<dd><p>The size of the subtitle font. Defaults to 10.</p></dd>
-
-
-<dt>size_body</dt>
-<dd><p>The size of all text other than the title, subtitle and caption. Defaults to 10.</p></dd>
-
-
-<dt>size_caption</dt>
-<dd><p>The size of the caption. Defaults to 9.</p></dd>
-
-
-<dt>size_axis</dt>
-<dd><p>The size of the axis. Defaults to 0.3.</p></dd>
-
-
-<dt>size_ticks</dt>
-<dd><p>The size of the ticks. Defaults to 0.3.</p></dd>
-
-
-<dt>size_grid</dt>
-<dd><p>The size of the vertical major gridlines. Defaults to 0.2.</p></dd>
-
-
-<dt>style_title</dt>
-<dd><p>The style of the title font. Defaults to "bold".</p></dd>
-
-
-<dt>style_subtitle</dt>
-<dd><p>The style of the subtitle font. Defaults to "plain".</p></dd>
-
-
-<dt>style_body</dt>
-<dd><p>The style of all text other than the title, subtitle or caption. Defaults to "plain".</p></dd>
-
-
-<dt>style_caption</dt>
-<dd><p>The style of the caption. Defaults to "plain".</p></dd>
-
-
-<dt>pal_title</dt>
+<dt>title_pal</dt>
 <dd><p>The colour palette for the title font. Defaults to "#000000".</p></dd>
 
 
-<dt>pal_subtitle</dt>
+<dt>title_font</dt>
+<dd><p>The font for the title. If NULL, inherits from font argument.</p></dd>
+
+
+<dt>title_size</dt>
+<dd><p>The size of the title font. Defaults to 11.</p></dd>
+
+
+<dt>title_style</dt>
+<dd><p>The style of the title font. Defaults to "bold".</p></dd>
+
+
+<dt>subtitle_font</dt>
+<dd><p>The font for the subtitle. If NULL, inherits from font argument.</p></dd>
+
+
+<dt>subtitle_pal</dt>
 <dd><p>The colour palette for the subtitle font. Defaults to "#323232".</p></dd>
 
 
-<dt>pal_body</dt>
+<dt>subtitle_size</dt>
+<dd><p>The size of the subtitle font. Defaults to 10.</p></dd>
+
+
+<dt>subtitle_style</dt>
+<dd><p>The style of the subtitle font. Defaults to "plain".</p></dd>
+
+
+<dt>body_font</dt>
+<dd><p>The font for all text other than the title, subtitle and caption. If NULL, inherits from font argument.</p></dd>
+
+
+<dt>body_pal</dt>
 <dd><p>The colour palette for all text other than the title, subtitle or caption. Defaults to "#323232".</p></dd>
 
 
-<dt>pal_caption</dt>
+<dt>body_size</dt>
+<dd><p>The size of all text other than the title, subtitle and caption. Defaults to 10.</p></dd>
+
+
+<dt>body_style</dt>
+<dd><p>The style of all text other than the title, subtitle or caption. Defaults to "plain".</p></dd>
+
+
+<dt>caption_font</dt>
+<dd><p>The font for the caption. If NULL, inherits from font argument.</p></dd>
+
+
+<dt>caption_pal</dt>
 <dd><p>The colour palette for the caption. Defaults to "#7F7F7F".</p></dd>
 
 
-<dt>pal_axis</dt>
+<dt>caption_size</dt>
+<dd><p>The size of the caption. Defaults to 9.</p></dd>
+
+
+<dt>caption_style</dt>
+<dd><p>The style of the caption. Defaults to "plain".</p></dd>
+
+
+<dt>axis_size</dt>
+<dd><p>The size of the axis. Defaults to 0.3.</p></dd>
+
+
+<dt>axis_pal</dt>
 <dd><p>The colour palette for the axis. Defaults to "#323232".</p></dd>
 
 
-<dt>pal_ticks</dt>
+<dt>ticks_size</dt>
+<dd><p>The size of the ticks. Defaults to 0.3.</p></dd>
+
+
+<dt>ticks_pal</dt>
 <dd><p>The colour palette for the ticks. Defaults to "#323232".</p></dd>
 
 
-<dt>pal_background</dt>
-<dd><p>A two colour vector. The first colour if for the panel (and legend key). The second colour is for the rest of the background.</p></dd>
+<dt>grid_size</dt>
+<dd><p>The size of the vertical major gridlines. Defaults to 0.2.</p></dd>
 
 
-<dt>pal_grid</dt>
+<dt>grid_pal</dt>
 <dd><p>The colour palette for the vertical major gridlines. Defaults to "#D3D3D3".</p></dd>
+
+
+<dt>background_pal</dt>
+<dd><p>A two colour vector. The first colour is for the panel. The second colour is for the rest of the background.</p></dd>
 
 
 <dt>x_grid</dt>
