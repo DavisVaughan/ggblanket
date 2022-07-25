@@ -149,6 +149,18 @@
             y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>,
             pal <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png"><!-- --></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>, 
+           y <span class="op">=</span> <span class="va">body_mass_g</span>,
+           col <span class="op">=</span> <span class="va">sex</span>,
+           facet <span class="op">=</span> <span class="va">species</span>,
+           facet2 <span class="op">=</span> <span class="va">sex</span>, 
+           y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1500</span><span class="op">)</span>, 
+           size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
 <ol start="5" style="list-style-type: decimal"><li>{ggblanket} provides good-looking default x and y scales.</li></ol>
 <p>For where:</p>
 <ul>
@@ -156,7 +168,7 @@
 <li>y categorical and x numeric/date: x_limits default to min/max of x_breaks with x_expand of c(0, 0)</li>
 <li>x numeric/date and y numeric/date: y_limits default to min/max of y_breaks with y_expand of c(0, 0), and x_limits default to NULL (i.e. min/max of x variable) and x_expand of c(0.025, 0.025)</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">storms</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -170,13 +182,13 @@
     y_title <span class="op">=</span> <span class="st">"Wind speed (knots)"</span>,
     caption <span class="op">=</span> <span class="st">"Source: NOAA"</span>
   <span class="op">)</span> </code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-8-1.png"><!-- --></p>
 <ol start="6" style="list-style-type: decimal"><li>{ggblanket} provides prefixed arguments for easy customisation with Rstudio autocomplete.</li></ol>
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x_</code>,<code>y_</code>, <code>col_</code> or <code>facet_</code> to access this. Then use arrow keys, and press tab again to select.</p>
 <p>Available arguments are for <code>x</code>, <code>y</code>, <code>col</code> and <code>facet</code>: <code>*_breaks``*_limits</code>, <code>*_include</code>, <code>*_expand</code>, and <code>*_labels</code>.</p>
 <p>For <code>x</code> and <code>y</code>, there is also a <code>*_trans</code> argument.</p>
 <p>There is also a <code>col_intervals</code> argument, so that legends can be arranged in appropriate order by default.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="va">species</span>,
@@ -189,9 +201,9 @@
     y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1500</span><span class="op">)</span>, 
     y_labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_number</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-8-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-9-1.png"><!-- --></p>
 <ol start="7" style="list-style-type: decimal"><li>{ggblanket} arranges horizontal geom y and col labels etc to be in correct order.</li></ol>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">sex</span>, <span class="va">island</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -199,9 +211,9 @@
   <span class="fu"><a href="reference/gg_col.html">gg_col</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">body_mass_kg</span>, y <span class="op">=</span> <span class="va">species</span>, col <span class="op">=</span> <span class="va">sex</span>, facet <span class="op">=</span> <span class="va">island</span>,
          col_labels <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="va"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span>, 
          position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-9-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-10-1.png"><!-- --></p>
 <ol start="8" style="list-style-type: decimal"><li>{ggblanket} converts unspecified titles to snakecase::to_sentence by default.</li></ol>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
@@ -215,10 +227,10 @@
           subtitle <span class="op">=</span> <span class="st">"Palmer Archipelago, Antarctica"</span>,
           theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>axis_pal <span class="op">=</span> <span class="st">"#ffffff"</span>, ticks_pal <span class="op">=</span> <span class="st">"#ffffff"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"#232323"</span>, size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> </code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-10-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-11-1.png"><!-- --></p>
 <ol start="9" style="list-style-type: decimal"><li>{ggblanket} outputs a <code>ggplot2</code> object, so extra <code>ggplot2</code> layers can be added if necessary.</li></ol>
 <p>Aesthetics and the pal are inherited to any subsequent geoms.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">storms</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -230,9 +242,9 @@
     y_include <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-11-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-12-1.png"><!-- --></p>
 <ol start="10" style="list-style-type: decimal"><li>{ggblanket} provides access to all of the relevant geom arg’s through the <code>...</code> argument.</li></ol>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_smooth.html">gg_smooth</a></span><span class="op">(</span>
@@ -245,9 +257,9 @@
     col_title <span class="op">=</span> <span class="st">""</span>, 
     col_labels <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="va"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span>
   <span class="op">)</span> </code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-12-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-13-1.png"><!-- --></p>
 <ol start="11" style="list-style-type: decimal"><li>{ggblanket} provides a <code>gg_blank</code> function for extra flexibility.</li></ol>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -272,10 +284,10 @@
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span>, alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_errorbar</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>, colour <span class="op">=</span> <span class="fu"><a href="reference/pal_na.html">pal_na</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-13-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-14-1.png"><!-- --></p>
 <ol start="12" style="list-style-type: decimal"><li>{ggblanket} is useful for creating custom {ggblanket} functions with your own defaults.</li></ol>
 <p>The <code>...</code> argument will allow you to access all other arguments within the {ggblanket} function.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg_point_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">col</span>, 
                             <span class="va">size</span> <span class="op">=</span> <span class="fl">3</span>, 
                             <span class="va">pal</span> <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, 
@@ -299,11 +311,11 @@
     col <span class="op">=</span> <span class="va">Species</span>, 
     x_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-14-1.png"><!-- --></p>
+<p><img src="reference/figures/README-unnamed-chunk-15-1.png"><!-- --></p>
 <ol start="13" style="list-style-type: decimal"><li>{ggblanket} supports ggplotly use.</li></ol>
 <p><code>ggplotly</code> won’t work in all situations. But it does work a lot of the time.</p>
 <p>{ggblanket} provides an <code>add_tooltip</code> function to assist with creating nice tooltips in combination with the <code>text</code> argument, and the <code>tooltip = "text"</code> argument in <code>ggplotly</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Species <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="reference/add_tooltip_text.html">add_tooltip_text</a></span><span class="op">(</span>titles <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
