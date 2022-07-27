@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
   x_include <span class="op">=</span> <span class="cn">NULL</span>,
   x_labels <span class="op">=</span> <span class="cn">NULL</span>,
   x_limits <span class="op">=</span> <span class="cn">NULL</span>,
-  x_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,
+  x_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_keep</a></span>,
   x_title <span class="op">=</span> <span class="cn">NULL</span>,
   x_trans <span class="op">=</span> <span class="st">"identity"</span>,
   y_breaks <span class="op">=</span> <span class="cn">NULL</span>,
@@ -83,7 +83,7 @@
   y_include <span class="op">=</span> <span class="cn">NULL</span>,
   y_labels <span class="op">=</span> <span class="cn">NULL</span>,
   y_limits <span class="op">=</span> <span class="cn">NULL</span>,
-  y_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,
+  y_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_keep</a></span>,
   y_title <span class="op">=</span> <span class="cn">NULL</span>,
   y_trans <span class="op">=</span> <span class="st">"identity"</span>,
   col_breaks <span class="op">=</span> <span class="cn">NULL</span>,
@@ -327,7 +327,6 @@
 <span class="r-in"><span class="fu">gg_density</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">depth</span>, col <span class="op">=</span> <span class="va">cut</span>, x_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} merges col and fill aesthetics into a single col aesthetic.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 45 rows containing non-finite values (stat_density).</span>
 <span class="r-plt img"><img src="gg_density-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="fu">gg_density</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, col <span class="op">=</span> <span class="va">cut</span>, position <span class="op">=</span> <span class="st">"stack"</span>, alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
