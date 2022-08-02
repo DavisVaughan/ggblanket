@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -183,9 +183,17 @@
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png"><!-- --></p>
 <ol start="6" style="list-style-type: decimal"><li>{ggblanket} provides prefixed arguments to help find arguments.</li></ol>
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x_</code>,<code>y_</code>, <code>col_</code> or <code>facet_</code> to access this. Then use arrow keys, and press tab again to select.</p>
-<p>Available arguments are for <code>x</code>, <code>y</code>, <code>col</code> and <code>facet</code>: <code>*_breaks``*_limits</code>, <code>*_include</code>, <code>*_expand</code>, and <code>*_labels</code>.</p>
-<p>For <code>x</code> and <code>y</code>, there is also a <code>*_trans</code> argument.</p>
-<p>There is also a <code>col_intervals</code> argument, so that legends can be arranged in appropriate order by default.</p>
+<p>Available arguments are:</p>
+<ul>
+<li><code>*_breaks</code></li>
+<li><code>*_expand</code></li>
+<li><code>*_include</code></li>
+<li><code>*_labels</code></li>
+<li><code>*_limits</code></li>
+<li><code>*_trans</code></li>
+<li><code>*_sec_axis</code></li>
+<li><code>col_intervals</code></li>
+</ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span>

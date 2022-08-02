@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,8 @@
   x_include <span class="op">=</span> <span class="cn">NULL</span>,
   x_labels <span class="op">=</span> <span class="cn">NULL</span>,
   x_limits <span class="op">=</span> <span class="cn">NULL</span>,
-  x_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,
+  x_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_keep</a></span>,
+  x_sec_axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
   x_title <span class="op">=</span> <span class="cn">NULL</span>,
   x_trans <span class="op">=</span> <span class="st">"identity"</span>,
   y_breaks <span class="op">=</span> <span class="cn">NULL</span>,
@@ -83,7 +84,8 @@
   y_include <span class="op">=</span> <span class="cn">NULL</span>,
   y_labels <span class="op">=</span> <span class="cn">NULL</span>,
   y_limits <span class="op">=</span> <span class="cn">NULL</span>,
-  y_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,
+  y_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_keep</a></span>,
+  y_sec_axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
   y_title <span class="op">=</span> <span class="cn">NULL</span>,
   y_trans <span class="op">=</span> <span class="st">"identity"</span>,
   col_breaks <span class="op">=</span> <span class="cn">NULL</span>,
@@ -199,7 +201,11 @@
 
 
 <dt>x_oob</dt>
-<dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
+<dd><p>A scales::oob_* function for how to deal with out-of-bounds values.#'</p></dd>
+
+
+<dt>x_sec_axis</dt>
+<dd><p>A secondary axis specified by the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
 
 
 <dt>x_title</dt>
@@ -234,12 +240,16 @@
 <dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
 
 
+<dt>y_sec_axis</dt>
+<dd><p>A secondary axis specified by the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
+
+
 <dt>y_title</dt>
 <dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
 
 
 <dt>y_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").#' @param col_breaks A vector of breaks. For a categorical col variable, this links pal values with col variable values dropping those not used. For a numeric variable where col_intervals is NULL, this only affects the labels on the legend.</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
 
 
 <dt>col_breaks</dt>
@@ -317,7 +327,6 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 13 rows containing non-finite values (stat_smooth).</span>
 <span class="r-plt img"><img src="gg_smooth-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_smooth</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span> <span class="op">+</span></span>
@@ -325,8 +334,6 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 13 rows containing non-finite values (stat_smooth).</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 13 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="gg_smooth-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_smooth</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">displ</span><span class="op">)</span> <span class="op">+</span></span>
@@ -334,8 +341,6 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 5 rows containing non-finite values (stat_smooth).</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 5 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="gg_smooth-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">gg_smooth</span><span class="op">(</span><span class="va">mpg</span>, x <span class="op">=</span> <span class="va">hwy</span>, y <span class="op">=</span> <span class="va">displ</span>, orientation <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -350,8 +355,6 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 6 rows containing non-finite values (stat_smooth).</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 6 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="gg_smooth-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 </code></pre></div>
