@@ -185,14 +185,22 @@
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x_</code>,<code>y_</code>, <code>col_</code> or <code>facet_</code> to access this. Then use arrow keys, and press tab again to select.</p>
 <p>Available arguments are:</p>
 <ul>
-<li><code>*_breaks</code></li>
-<li><code>*_expand</code></li>
-<li><code>*_include</code></li>
-<li><code>*_labels</code></li>
-<li><code>*_limits</code></li>
-<li><code>*_trans</code></li>
-<li><code>*_sec_axis</code></li>
-<li><code>col_intervals</code></li>
+<li>
+<code>*_breaks</code>: Adjust the breaks of an axis</li>
+<li>
+<code>*_expand</code>: Adjust the padding beyond the limits</li>
+<li>
+<code>*_include</code>: Include a value within a scale</li>
+<li>
+<code>*_labels</code>: Adjust the labels on the breaks</li>
+<li>
+<code>*_limits</code>: Adjust the limits</li>
+<li>
+<code>*_trans</code>: Transform an axis</li>
+<li>
+<code>*_sec_axis</code>: Add a secondary axis</li>
+<li>
+<code>col_intervals</code>: Determine intervals to colour by.</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
@@ -216,15 +224,17 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>wind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wind</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/gg_col.html">gg_col</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/gg_line.html">gg_line</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="va">year</span>,
     y <span class="op">=</span> <span class="va">wind</span>,
     x_labels <span class="op">=</span> <span class="op">~</span><span class="va">.x</span>,
+    y_include <span class="op">=</span> <span class="fl">0</span>,
     title <span class="op">=</span> <span class="st">"Storm wind speed"</span>,
     subtitle <span class="op">=</span> <span class="st">"USA average storm wind speed, 1980\u20132020"</span>,
     y_title <span class="op">=</span> <span class="st">"Wind speed (knots)"</span>,
     caption <span class="op">=</span> <span class="st">"Source: NOAA"</span>
-  <span class="op">)</span> </code></pre></div>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-9-1.png"><!-- --></p>
 <ol start="8" style="list-style-type: decimal"><li>{ggblanket} supports quick theme adjustments via <code>gg_theme</code> function.</li></ol>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -232,19 +242,17 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>wind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wind</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/gg_line.html">gg_line</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/gg_col.html">gg_col</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="va">year</span>,
     y <span class="op">=</span> <span class="va">wind</span>,
     x_labels <span class="op">=</span> <span class="op">~</span><span class="va">.x</span>,
-    y_include <span class="op">=</span> <span class="fl">0</span>, 
+    x_expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
     theme <span class="op">=</span> <span class="fu"><a href="reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>
-      bg_plot_pal <span class="op">=</span> <span class="st">"white"</span>,
-      bg_panel_pal <span class="op">=</span> <span class="st">"#F1F3F5"</span>,
-      title_size <span class="op">=</span> <span class="fl">13</span>,
-      body_size <span class="op">=</span> <span class="fl">12</span>,
-      grid_v <span class="op">=</span> <span class="cn">TRUE</span>, 
-      grid_h <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+      bg_plot_pal <span class="op">=</span> <span class="st">"#ffffff"</span>,
+      bg_panel_pal <span class="op">=</span> <span class="st">"#f1f3f5"</span>,
+      body_size <span class="op">=</span> <span class="fl">8</span>,
+      grid_h <span class="op">=</span> <span class="cn">TRUE</span>, 
+      grid_v <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-10-1.png"><!-- --></p>
 <ol start="9" style="list-style-type: decimal"><li>{ggblanket} arranges horizontal plot labels to be in correct order.</li></ol>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
