@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,6 @@
 <span>  x_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  x_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,</span>
 <span>  x_sec_axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  x_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
@@ -84,7 +83,6 @@
 <span>  y_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  y_oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">oob_censor</a></span>,</span>
 <span>  y_sec_axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  y_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
@@ -201,10 +199,6 @@
 <dd><p>A vector of length 2 to determine the limits of the axis.</p></dd>
 
 
-<dt>x_oob</dt>
-<dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
-
-
 <dt>x_sec_axis</dt>
 <dd><p>A secondary axis specified by the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
 
@@ -235,10 +229,6 @@
 
 <dt>y_limits</dt>
 <dd><p>A vector of length 2 to determine the limits of the axis.</p></dd>
-
-
-<dt>y_oob</dt>
-<dd><p>A scales::oob_* function for how to deal with out-of-bounds values.</p></dd>
 
 
 <dt>y_sec_axis</dt>
