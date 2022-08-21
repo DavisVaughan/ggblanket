@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -201,7 +201,7 @@
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="70%"></p>
 </div>
 <div class="section level4">
-<h4 id="6-ggblanket-provides-prefixed-arguments-to-help-find-arguments">6. {ggblanket} provides prefixed arguments to help find arguments.<a class="anchor" aria-label="anchor" href="#6-ggblanket-provides-prefixed-arguments-to-help-find-arguments"></a>
+<h4 id="6-ggblanket-provides-prefixed-arguments-for-customisation">6. {ggblanket} provides prefixed arguments for customisation.<a class="anchor" aria-label="anchor" href="#6-ggblanket-provides-prefixed-arguments-for-customisation"></a>
 </h4>
 <p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x_</code>,<code>y_</code>, <code>col_</code> or <code>facet_</code> to access this. Then use arrow keys, and press tab again to select.</p>
 <p>In general, arguments follow the prefix with the argument name that they relate to in the <code>ggplot2</code> function (e.g. <code>scale_*_continuous</code>, <code>facet_wrap</code> or <code>facet_grid</code>).</p>
@@ -218,15 +218,11 @@
 <li>
 <code>*_limits</code>: Adjust the limits</li>
 <li>
-<code>*_oob</code>: Adjust treatment of out-of-bound values</li>
-<li>
 <code>*_trans</code>: Transform an axis</li>
 <li>
 <code>*_sec_axis</code>: Add a secondary axis</li>
 <li>
 <code>*_title</code>: Add a title</li>
-<li>
-<code>col_intervals</code>: Determine intervals to colour by</li>
 <li>
 <code>col_legend_place</code>: Place to put the legend (e.g. “r”)</li>
 <li>
@@ -243,6 +239,7 @@
 <li>
 <code>facet_nrow</code>: How many rows to wrap facets into</li>
 </ul>
+<p>Note that {ggblanket} keeps out-of-bound values (i.e. uses scales::oob_keep under the hood). However, you can zoom in using <code>coord = coord_cartesian(xlim = ..., ylim = ...)</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span></span>
@@ -250,7 +247,6 @@
 <span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
 <span>    col <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
 <span>    position <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>, </span>
-<span>    col_intervals <span class="op">=</span> <span class="op">~</span> <span class="fu">santoku</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/santoku/reference/chop_quantiles.html" class="external-link">chop_quantiles</a></span><span class="op">(</span><span class="va">.x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    col_legend_place <span class="op">=</span> <span class="st">"r"</span>,</span>
 <span>    y_include <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>    y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1500</span><span class="op">)</span>, </span>
