@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,15 +91,16 @@
 <span>  y_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  col_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_continuous <span class="op">=</span> <span class="st">"gradient"</span>,</span>
 <span>  col_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_intervals <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_place <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_legend_rev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  col_continuous <span class="op">=</span> <span class="st">"gradient"</span>,</span>
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -268,6 +269,10 @@
 <dd><p>A function that takes the limits as input (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
 
 
+<dt>col_continuous</dt>
+<dd><p>Type of colouring for a continuous variable. Either "gradient" or "steps". Defaults to "steps".</p></dd>
+
+
 <dt>col_include</dt>
 <dd><p>For a numeric or date variable, any values that the scale should include (e.g. 0).</p></dd>
 
@@ -292,16 +297,16 @@
 <dd><p>The number of rows for the legend elements.</p></dd>
 
 
+<dt>col_legend_rev</dt>
+<dd><p>Reverse the elements of the legend. Defaults to FALSE.</p></dd>
+
+
 <dt>col_limits</dt>
 <dd><p>A vector to determine the limits of the axis.</p></dd>
 
 
 <dt>col_title</dt>
 <dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
-
-
-<dt>col_continuous</dt>
-<dd><p>Type of colouring for a continuous variable. Either "gradient" or "steps". Defaults to "steps".</p></dd>
 
 
 <dt>facet_labels</dt>
@@ -353,7 +358,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">gg_linerange</span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="va">trt</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span>, col <span class="op">=</span> <span class="va">group</span>,</span></span>
 <span class="r-in"><span>             position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case. Use titles = ~.x to leave unspecified titles as is, and/or specify individual titles manually using *_title arguments.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} converts unspecified titles using snakecase::to_sentence_case.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> {ggblanket} merges col and fill aesthetics into a single col aesthetic.</span>
 <span class="r-plt img"><img src="gg_linerange-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

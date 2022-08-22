@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -224,6 +224,8 @@
 <li>
 <code>*_title</code>: Add a title</li>
 <li>
+<code>col_continuous</code> How to colour a continuous variable</li>
+<li>
 <code>col_legend_place</code>: Place to put the legend (e.g. “r”)</li>
 <li>
 <code>col_legend_ncol</code>: Number of columns to arrange legend elements into</li>
@@ -247,7 +249,7 @@
 <span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
 <span>    col <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
 <span>    position <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>, </span>
-<span>    col_legend_place <span class="op">=</span> <span class="st">"r"</span>,</span>
+<span>    col_continuous <span class="op">=</span> <span class="st">"steps"</span>,</span>
 <span>    y_include <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>    y_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">1500</span><span class="op">)</span>, </span>
 <span>    y_labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_number</a></span><span class="op">(</span><span class="op">)</span></span>
