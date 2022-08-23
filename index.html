@@ -79,15 +79,16 @@
 <p>{ggblanket} is a package of {ggplot2} wrapper functions to <strong>simplify visualisation</strong>.</p>
 <p>To do this, the {ggblanket} package:</p>
 <ol style="list-style-type: decimal">
-<li>uses <code>gg_*</code> functions that wrap a single <code>ggplot2::geom_*</code> function</li>
+<li>provides <code>gg_*</code> short-cut functions to plot a <code>ggplot2::geom</code>
+</li>
 <li>merges col and fill aesthetics into a single <code>col</code> argument</li>
-<li>customises colours via <code>pal</code> and <code>alpha</code> arguments consistently</li>
+<li>customises colours consistently via a <code>pal</code> argument</li>
 <li>provides a <code>facet</code> argument to facet by a single variable</li>
 <li>provides an additional <code>facet2</code> argument to facet in a grid</li>
 <li>provides prefixed arguments to help find arguments</li>
-<li>uses nice numeric/date default scales.</li>
-<li>provides a <code>theme</code> argument for customisation.</li>
-<li>provides a <code>gg_theme</code> function to create a quick theme.</li>
+<li>uses nice numeric/date default scales</li>
+<li>provides a <code>theme</code> argument for customisation</li>
+<li>provides a <code>gg_theme</code> function to create a quick theme</li>
 <li>arranges horizontal plot labels to be in correct order</li>
 <li>converts unspecified titles to <code>snakecase::to_sentence</code>
 </li>
@@ -124,7 +125,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/davidhodge931/ggblanket/" class="external-link">ggblanket</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
-<h4 id="1-ggblanket-uses-gg_-functions-that-wrap-a-single-ggplot2geom_-function">1. {ggblanket} uses <code>gg_*</code> functions that wrap a single <code>ggplot2::geom_*</code> function.<a class="anchor" aria-label="anchor" href="#1-ggblanket-uses-gg_-functions-that-wrap-a-single-ggplot2geom_-function"></a>
+<h4 id="1-ggblanket-provides-gg_-short-cut-functions-to-plot-a-geom">1. {ggblanket} provides <code>gg_*</code> short-cut functions to plot a <code>geom</code>.<a class="anchor" aria-label="anchor" href="#1-ggblanket-provides-gg_-short-cut-functions-to-plot-a-geom"></a>
 </h4>
 <p>These functions wrap a <code>ggplot2::ggplot(aes(...))</code> function that includes any aesthetics provided with a single <code>ggplot2::geom_*()</code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
