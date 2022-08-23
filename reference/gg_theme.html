@@ -18,7 +18,10 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/ggblanket.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
@@ -52,23 +55,23 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_theme</span><span class="op">(</span></span>
-<span>  font <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  title_pal <span class="op">=</span> <span class="st">"#000000"</span>,</span>
-<span>  title_font <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title_family <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title_size <span class="op">=</span> <span class="fl">11</span>,</span>
-<span>  title_style <span class="op">=</span> <span class="st">"bold"</span>,</span>
-<span>  subtitle_font <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title_face <span class="op">=</span> <span class="st">"bold"</span>,</span>
+<span>  subtitle_family <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle_pal <span class="op">=</span> <span class="st">"#323232"</span>,</span>
 <span>  subtitle_size <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  subtitle_style <span class="op">=</span> <span class="st">"plain"</span>,</span>
-<span>  body_font <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle_face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  body_family <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  body_pal <span class="op">=</span> <span class="st">"#323232"</span>,</span>
 <span>  body_size <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  body_style <span class="op">=</span> <span class="st">"plain"</span>,</span>
-<span>  caption_font <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  body_face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  caption_family <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption_pal <span class="op">=</span> <span class="st">"#7F7F7F"</span>,</span>
 <span>  caption_size <span class="op">=</span> <span class="fl">9</span>,</span>
-<span>  caption_style <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  caption_face <span class="op">=</span> <span class="st">"plain"</span>,</span>
 <span>  axis_size <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  axis_pal <span class="op">=</span> <span class="st">"#323232"</span>,</span>
 <span>  ticks_size <span class="op">=</span> <span class="fl">0.3</span>,</span>
@@ -87,44 +90,44 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>font</dt>
-<dd><p>The font for all text to use. Defaults to "".</p></dd>
+    <dl><dt>family</dt>
+<dd><p>The font family for all text to use. Defaults to "".</p></dd>
 
 
 <dt>title_pal</dt>
-<dd><p>The colour palette for the title font. Defaults to "#000000".</p></dd>
+<dd><p>The colour palette for the title family. Defaults to "#000000".</p></dd>
 
 
-<dt>title_font</dt>
-<dd><p>The font for the title. If NULL, inherits from font argument.</p></dd>
+<dt>title_family</dt>
+<dd><p>The font family for the title. If NULL, inherits from family argument.</p></dd>
 
 
 <dt>title_size</dt>
-<dd><p>The size of the title font. Defaults to 11.</p></dd>
+<dd><p>The size of the title family. Defaults to 11.</p></dd>
 
 
-<dt>title_style</dt>
-<dd><p>The style of the title font. Defaults to "bold".</p></dd>
+<dt>title_face</dt>
+<dd><p>The font style of the title family. Defaults to "bold".</p></dd>
 
 
-<dt>subtitle_font</dt>
-<dd><p>The font for the subtitle. If NULL, inherits from font argument.</p></dd>
+<dt>subtitle_family</dt>
+<dd><p>The font family for the subtitle. If NULL, inherits from family argument.</p></dd>
 
 
 <dt>subtitle_pal</dt>
-<dd><p>The colour palette for the subtitle font. Defaults to "#323232".</p></dd>
+<dd><p>The colour palette for the subtitle family. Defaults to "#323232".</p></dd>
 
 
 <dt>subtitle_size</dt>
-<dd><p>The size of the subtitle font. Defaults to 10.</p></dd>
+<dd><p>The size of the subtitle family. Defaults to 10.</p></dd>
 
 
-<dt>subtitle_style</dt>
-<dd><p>The style of the subtitle font. Defaults to "plain".</p></dd>
+<dt>subtitle_face</dt>
+<dd><p>The font style of the subtitle family. Defaults to "plain".</p></dd>
 
 
-<dt>body_font</dt>
-<dd><p>The font for all text other than the title, subtitle and caption. If NULL, inherits from font argument.</p></dd>
+<dt>body_family</dt>
+<dd><p>The font family for all text other than the title, subtitle and caption. If NULL, inherits from family argument.</p></dd>
 
 
 <dt>body_pal</dt>
@@ -135,12 +138,12 @@
 <dd><p>The size of all text other than the title, subtitle and caption. Defaults to 10.</p></dd>
 
 
-<dt>body_style</dt>
-<dd><p>The style of all text other than the title, subtitle or caption. Defaults to "plain".</p></dd>
+<dt>body_face</dt>
+<dd><p>The font style of all text other than the title, subtitle or caption. Defaults to "plain".</p></dd>
 
 
-<dt>caption_font</dt>
-<dd><p>The font for the caption. If NULL, inherits from font argument.</p></dd>
+<dt>caption_family</dt>
+<dd><p>The font family for the caption. If NULL, inherits from family argument.</p></dd>
 
 
 <dt>caption_pal</dt>
@@ -151,8 +154,8 @@
 <dd><p>The size of the caption. Defaults to 9.</p></dd>
 
 
-<dt>caption_style</dt>
-<dd><p>The style of the caption. Defaults to "plain".</p></dd>
+<dt>caption_face</dt>
+<dd><p>The font style of the caption. Defaults to "plain".</p></dd>
 
 
 <dt>axis_size</dt>

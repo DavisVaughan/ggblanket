@@ -1,8 +1,9 @@
 pandoc: 2.7.3
 pkgdown: 2.0.6
 pkgdown_sha: ~
-articles: {}
-last_built: 2022-08-23T02:47Z
+articles:
+  ggblanket: ggblanket.html
+last_built: 2022-08-23T22:57Z
 urls:
   reference: https://davidhodge931.github.io/ggblanket/reference
   article: https://davidhodge931.github.io/ggblanket/articles
