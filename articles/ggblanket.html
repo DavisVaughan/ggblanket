@@ -263,7 +263,7 @@
 <h3 id="unspecified-titles-converted-to-snakecaseto_sentence">7. Unspecified titles converted to <code>snakecase::to_sentence</code><a class="anchor" aria-label="anchor" href="#unspecified-titles-converted-to-snakecaseto_sentence"></a>
 </h3>
 <p>This will make quicker to get to a plot that has titles that are good for external people to see, and will often work nicely for your <code>snakecase</code> column names.</p>
-<p>For titles that you need to change manually, you can change manually using <code>x_title</code>, <code>y_title</code>, or <code>col_title</code>.</p>
+<p>For titles that you need to change manually, you can change manually using <code>x_title</code>, <code>y_title</code>, or <code>col_title</code>. To remove titles, you can use <code>x_title = ""</code> within the <code>gg_*</code> function and equivalent for the y and col titles.</p>
 <p>You can also use <code>titles = ~.x</code> to leave unspecified titles as per variable names.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
