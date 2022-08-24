@@ -104,10 +104,10 @@
 <li>
 <code>gg_*</code> functions to plot a single geom</li>
 <li>col and fill aesthetics merged into a single <code>col</code> argument</li>
-<li>Colours customised consistently via a <code>pal</code> argument</li>
+<li>Colours customised via a <code>pal</code> argument consistently</li>
 <li>A <code>facet</code> argument to facet by a single variable</li>
 <li>An additional <code>facet2</code> argument to facet in a grid</li>
-<li>Consistent prefixed arguments to help find arguments to customise</li>
+<li>Ability to customise via arguments with consistent prefix’s</li>
 <li>Unspecified titles converted to <code>snakecase::to_sentence</code>
 </li>
 <li>Horizontal labels generally arranged in correct order</li>
@@ -129,7 +129,7 @@
 <div class="section level3">
 <h3 id="gg_-functions-to-plot-a-single-geom">1. <code>gg_*</code> functions to plot a single geom<a class="anchor" aria-label="anchor" href="#gg_-functions-to-plot-a-single-geom"></a>
 </h3>
-<p>These functions wrap a <code>ggplot2::ggplot(aes(...))</code> function that includes any aesthetics provided with a single <code>ggplot2::geom_*()</code> function.</p>
+<p>These <code>gg_*</code>functions each wrap a ggplot2 <code>ggplot(aes(...))</code> function with the applicable ggplot2 <code>geom_*()</code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Species <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -151,9 +151,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-3-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="colours-customised-consistently-via-a-pal-argument-consistently">3. Colours customised consistently via a <code>pal</code> argument consistently<a class="anchor" aria-label="anchor" href="#colours-customised-consistently-via-a-pal-argument-consistently"></a>
+<h3 id="colours-customised-via-a-pal-argument-consistently">3. Colours customised via a <code>pal</code> argument consistently<a class="anchor" aria-label="anchor" href="#colours-customised-via-a-pal-argument-consistently"></a>
 </h3>
-<p>These arguments work in the same way regardless of whether a <code>col</code> variable is specified or not. This is therefore one less thing for users to remember.</p>
+<p>These arguments work in the same way regardless of whether a <code>col</code> variable is specified or not. This is therefore one less thing for users to remember. The <code>alpha</code> argument is also available.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -204,10 +204,10 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-6-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="consistent-prefixed-arguments-to-help-find-arguments-to-customise">6. Consistent prefixed arguments to help find arguments to customise<a class="anchor" aria-label="anchor" href="#consistent-prefixed-arguments-to-help-find-arguments-to-customise"></a>
+<h3 id="ability-to-customise-via-arguments-with-consistent-prefixs">6. Ability to customise via arguments with consistent prefix’s<a class="anchor" aria-label="anchor" href="#ability-to-customise-via-arguments-with-consistent-prefixs"></a>
 </h3>
-<p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x_</code>,<code>y_</code>, <code>col_</code> or <code>facet_</code> to access this. Then use arrow keys, and press tab again to select.</p>
-<p>In general, arguments follow the prefix with the argument name that they relate to in the <code>ggplot2</code> function (e.g. <code>scale_*_continuous</code>, <code>facet_wrap</code> or <code>facet_grid</code>).</p>
+<p>There is lots of customisation available through carefully named arguments with consistent prefixes.</p>
+<p>This is designed to work with the Rstudio autocomplete to help you find the adjustment you need. Press the tab key after typing <code>x</code>,<code>y</code>, <code>col</code> or <code>facet</code> to access the list from autocomplete. Then use arrow keys, and press tab again to select.</p>
 <p>Available arguments are:</p>
 <ul>
 <li>
@@ -237,14 +237,14 @@
 <li>
 <code>facet_scales</code>: How facet scales are to be treated</li>
 <li>
-<code>facet_space</code>: Whether facet space is to be treated in the grid</li>
+<code>facet_space</code>: Whether facet space is to be allocated proportionally</li>
 <li>
 <code>facet_ncol</code>: How many columns to wrap facets into<br>
 </li>
 <li>
 <code>facet_nrow</code>: How many rows to wrap facets into</li>
 </ul>
-<p>Note that ggblanket keeps out-of-bound values (i.e. uses scales::oob_keep under the hood). However, you can zoom in using <code>coord = coord_cartesian(xlim = ..., ylim = ...)</code>.</p>
+<p>Note that ggblanket keeps out-of-bound values (i.e. it uses scales::oob_keep under the hood). However, you can zoom in using <code>coord = coord_cartesian(xlim = ..., ylim = ...)</code> (or by filtering the data).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/gg_jitter.html">gg_jitter</a></span><span class="op">(</span></span>
@@ -311,6 +311,7 @@
 </h3>
 <p>The default x and y scales have been designed to create symmetry and balance.</p>
 <p>The default theme has a clean look designed to draw attention to the patterns of the data in the panel.</p>
+<p>Note if you do adjust the theme, ggblanket guesses the gridlines you want based on the type of data provided to the <code>gg_*</code> function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">storms</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
@@ -334,6 +335,7 @@
 </h3>
 <p>This allows you to utilise the simplicity of ggblanket, while making content that has your required look and feel.</p>
 <p>Your theme will control all theme aspects, other than the legend position and direction. You must instead control these within the <code>gg_*</code> function with the <code>col_legend_place</code> argument (e.g. `<code>col_legend_place = "r"</code>).</p>
+<p>Note that as soon as you add a theme using <code><a href="../reference/gg_theme.html">gg_theme()</a></code>, you will need to add any gridlines you want using the <code>grid_h</code> and <code>grid_v</code> arguments.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
