@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,6 +109,7 @@
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_scales <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
+<span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -137,7 +138,7 @@
 
 
 <dt>facet2</dt>
-<dd><p>Unquoted second facet variable for a facet grid of facet by facet2 variables.</p></dd>
+<dd><p>Unquoted second facet variable.</p></dd>
 
 
 <dt>group</dt>
@@ -317,11 +318,11 @@
 
 
 <dt>facet_ncol</dt>
-<dd><p>The number of columns of facetted plots.</p></dd>
+<dd><p>The number of columns of faceted plots.</p></dd>
 
 
 <dt>facet_nrow</dt>
-<dd><p>The number of rows of facetted plots.</p></dd>
+<dd><p>The number of rows of faceted plots.</p></dd>
 
 
 <dt>facet_scales</dt>
@@ -329,7 +330,11 @@
 
 
 <dt>facet_space</dt>
-<dd><p>Whether facet space should be "fixed" across facets, "free" to be proportional in both directions, or free to be proportional in just one direction (i.e. "free_x" or "free_y"). Only applies Where facet2 is provided and facet_scales are not fixed. Defaults to "fixed".</p></dd>
+<dd><p>Whether facet space should be "fixed" across facets, "free" to be proportional in both directions, or free to be proportional in just one direction (i.e. "free_x" or "free_y"). Only applies where the facet layout is a 'grid' and facet_scales are not fixed. Defaults to "fixed".</p></dd>
+
+
+<dt>facet_layout</dt>
+<dd><p>Whether the facet type is to be "wrap" or "grid".</p></dd>
 
 
 <dt>caption</dt>

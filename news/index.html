@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,32 +54,32 @@
 <li>Breaking: In gg_theme, changed <code>*_style</code> arguments to <code>*_face</code>.</li>
 <li>Breaking: In gg_theme, changed <code>font</code> arguments to <code>family</code>.</li>
 <li>Added <code>col_continuous</code> argument to support colouring by “steps”.</li>
-<li>Added <code>facet_space</code> argument to support proportional facet panels.</li>
 <li>Added <code>col_legend_rev</code> argument to reverse legends.</li>
 <li>Added <code>gg_polygon</code> function.</li>
+<li>Added <code>facet_space</code> and <code>facet_layout</code> arguments to support proportional facet panels.</li>
 <li>Improved default legend look for where continuous gradient.</li>
 <li>Fixed bug with <code>position = "fill"</code>.</li>
 <li>Added vignette.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.0" id="ggblanket-130">ggblanket 1.3.0<a class="anchor" aria-label="anchor" href="#ggblanket-130"></a></h2><p class="text-muted">CRAN release: 2022-08-05</p>
-<ul><li>Added <code>facet2</code> aesthetic in to support effortless grid facetting.</li>
+<ul><li>Breaking: removed <code>facet_intervals</code> argument.</li>
+<li>Breaking: made extensive changes to <code>gg_theme</code> function.</li>
+<li>Added <code>facet2</code> aesthetic in to support effortless grid facetting.</li>
 <li>Changed default background theme colours.</li>
 <li>Fixed bug with <code>*_limits</code> and <code>*_include</code> not working correctly.<br></li>
 <li>Added *_sec_axis arguments.</li>
 <li>Changed *_oob default to <code><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">scales::oob_keep</a></code>.</li>
 <li>Removed reversal of logical variable order.</li>
-<li>Defaulted col_legend_place to bottom.<br></li>
-<li>Breaking: removed <code>facet_intervals</code> argument.</li>
-<li>Breaking: made extensive changes to <code>gg_theme</code> function.</li>
+<li>Defaulted col_legend_place to bottom.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="ggblanket-120">ggblanket 1.2.0<a class="anchor" aria-label="anchor" href="#ggblanket-120"></a></h2><p class="text-muted">CRAN release: 2022-07-01</p>
-<ul><li>Added support for <code>*_breaks</code> to receive a function.</li>
+<ul><li>Breaking: Removed <code>*_breaks_n</code> and <code>*_breaks_width</code>.</li>
+<li>Added support for <code>*_breaks</code> to receive a function.</li>
 <li>Added <code>*_include</code> argument.</li>
 <li>Added <code>*_trans</code> argument.</li>
 <li>Modified default <code>x_breaks</code> behaviour for when both x and y are numeric or date.</li>
-<li>Breaking: Removed <code>*_breaks_n</code> and <code>*_breaks_width</code>.</li>
 <li>Enhanced <code>gg_blank</code> to work with only one x or y.</li>
 <li>Provided support for <code>ggplotly</code>.</li>
 <li>Added new <code>add_tooltip_text</code> function.</li>
@@ -91,8 +91,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="ggblanket-110">ggblanket 1.1.0<a class="anchor" aria-label="anchor" href="#ggblanket-110"></a></h2><p class="text-muted">CRAN release: 2022-05-27</p>
 <ul><li>Remove default sentence case transformation of categorical variable labels.</li>
-<li>Updated scales to work in a consistent way with position = “fill”.</li>
-<li>Other minor changes.</li>
+<li>Updated scales to work in a consistent way with <code>position = "fill"</code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="ggblanket-100">ggblanket 1.0.0<a class="anchor" aria-label="anchor" href="#ggblanket-100"></a></h2><p class="text-muted">CRAN release: 2022-05-10</p>
