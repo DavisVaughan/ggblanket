@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9100</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9200</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,6 @@
 <span>  col_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_continuous <span class="op">=</span> <span class="st">"gradient"</span>,</span>
 <span>  col_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  col_intervals <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_place <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -168,16 +167,12 @@
 <dd><p>For a numeric or date variable, any values that the scale should include (e.g. 0).</p></dd>
 
 
-<dt>col_intervals</dt>
-<dd><p>A function to cut or chop the numeric variable into intervals (e.g. ~ santoku::chop_mean_sd(.x, drop = FALSE)).</p></dd>
-
-
 <dt>col_labels</dt>
 <dd><p>A function that takes the breaks as inputs (e.g. scales::label_comma()), or a vector of labels. Note this does not affect where col_intervals is not NULL.</p></dd>
 
 
 <dt>col_legend_place</dt>
-<dd><p>The place for the legend. "b" for bottom, "r" for right, "t" for top, or "l" for left.</p></dd>
+<dd><p>The place for the legend. "b" for bottom, "r" for right, "t" for top, or "l" for left. Defaults to "b".</p></dd>
 
 
 <dt>col_legend_ncol</dt>
@@ -197,19 +192,19 @@
 
 
 <dt>col_title</dt>
-<dd><p>Axis title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+<dd><p>Legend title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
 
 
 <dt>facet_labels</dt>
-<dd><p>A function that takes the breaks as inputs (e.g. scales::label_comma()), or a named vector of labels (e.g. c(value = "label", ...)).</p></dd>
+<dd><p>A function that takes the breaks as inputs (e.g. scales::label_comma()), or a named vector of labels (e.g. c("value" = "label", ...)).</p></dd>
 
 
 <dt>facet_ncol</dt>
-<dd><p>The number of columns of faceted plots.</p></dd>
+<dd><p>The number of columns of facets. Only applies to a facet layout of "wrap".</p></dd>
 
 
 <dt>facet_nrow</dt>
-<dd><p>The number of rows of faceted plots.</p></dd>
+<dd><p>The number of rows of facets. Only applies to a facet layout of "wrap".</p></dd>
 
 
 <dt>caption</dt>
