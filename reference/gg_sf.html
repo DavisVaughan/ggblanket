@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9200</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.9300</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,6 +84,7 @@
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -205,6 +206,10 @@
 
 <dt>facet_nrow</dt>
 <dd><p>The number of rows of facets. Only applies to a facet layout of "wrap".</p></dd>
+
+
+<dt>facet_layout</dt>
+<dd><p>Whether the layout is to be "wrap" or "grid". If NULL and a single facet (or facet2) argument is provided, then defaults to "wrap". If NULL and both facet and facet2 arguments are provided, defaults to "grid".</p></dd>
 
 
 <dt>caption</dt>
