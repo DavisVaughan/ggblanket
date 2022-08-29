@@ -105,12 +105,12 @@
 <code>gg_*</code> functions to plot a single geom</li>
 <li>col and fill aesthetics merged into a single <code>col</code> argument</li>
 <li>Colours customised via a <code>pal</code> argument consistently</li>
-<li>A <code>facet</code> argument to facet by a single variable</li>
-<li>An additional <code>facet2</code> argument to facet in a grid</li>
+<li>A <code>facet</code> argument to facet in a “wrap” or “grid” layout</li>
+<li>An additional <code>facet2</code> argument to support facetting by 2 variables</li>
 <li>Ability to customise via arguments with consistent prefix’s</li>
 <li>Unspecified titles converted to <code>snakecase::to_sentence</code>
 </li>
-<li>Horizontal labels generally arranged in correct order</li>
+<li>Horizontal labels, colours and legends generally arranged in correct order</li>
 <li>Nice default scales and theme</li>
 <li>A <code>theme</code> argument for customisation</li>
 <li>A <code>gg_theme</code> function to create a quick theme</li>
@@ -123,7 +123,7 @@
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/davidhodge931/ggblanket/" class="external-link">ggblanket</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidhodge931.github.io/ggblanket/">ggblanket</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
@@ -169,9 +169,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-4-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-facet-argument-to-facet-by-a-single-variable">4. A <code>facet</code> argument to facet by a single variable<a class="anchor" aria-label="anchor" href="#a-facet-argument-to-facet-by-a-single-variable"></a>
+<h3 id="a-facet-argument-to-facet-in-a-wrap-or-grid-layout">4. A <code>facet</code> argument to facet in a “wrap” or “grid” layout<a class="anchor" aria-label="anchor" href="#a-facet-argument-to-facet-in-a-wrap-or-grid-layout"></a>
 </h3>
-<p>Facetting is treated as if it is an aesthetic, where the users just provide an unquoted variable to facet by.</p>
+<p>Facetting is treated as if it is an aesthetic, where the users just provide an unquoted variable to facet by. If a single facet (or facet2) variable is provided, it’ll default to a “wrap” layout.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -186,10 +186,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-5-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="an-additional-facet2-argument-to-facet-in-a-grid">5. An additional <code>facet2</code> argument to facet in a grid<a class="anchor" aria-label="anchor" href="#an-additional-facet2-argument-to-facet-in-a-grid"></a>
+<h3 id="an-additional-facet2-argument-to-support-facetting-by-2-variables">5. An additional <code>facet2</code> argument to support facetting by 2 variables<a class="anchor" aria-label="anchor" href="#an-additional-facet2-argument-to-support-facetting-by-2-variables"></a>
 </h3>
-<p>If both <code>facet</code>and <code>facet2</code> variables are provided, then the gg_* function will facet in a grid of <code>facet</code> by <code>facet2</code>.</p>
-<p>If only one facet (or facet2) variable is provided, it will default to using a facet layout of <code>"wrap"</code>. The user can specify <code>facet_layout = "grid"</code>, if they wish to access the proportional facet sizes enabled by the <code>facet_space</code> argument.</p>
+<p>Faceting by two variables is often useful. If both <code>facet</code>and <code>facet2</code> variables are provided, then the gg_* function will default to a “grid” layout of <code>facet</code> by <code>facet2</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -288,10 +287,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-8-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="horizontal-labels-generally-arranged-in-correct-order">8. Horizontal labels generally arranged in correct order<a class="anchor" aria-label="anchor" href="#horizontal-labels-generally-arranged-in-correct-order"></a>
+<h3 id="horizontal-labels-colours-and-legends-generally-arranged-in-correct-order">8. Horizontal labels, colours and legends generally arranged in correct order<a class="anchor" aria-label="anchor" href="#horizontal-labels-colours-and-legends-generally-arranged-in-correct-order"></a>
 </h3>
-<p>When plots are horizontal, ggblanket ensures y labels and colours are in the right order.</p>
-<p>However, if it gets the legend direction wrong at any point, you can reverse using the <code>col_legend_rev</code> argument.</p>
+<p>When plots are horizontal, ggblanket ensures y labels, colours and legends are generally in the right order.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
