@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.990</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -460,11 +460,13 @@
 <p>Like everything, ggblanket has it’s limitations.</p>
 <p>You cannot easily plot:</p>
 <ul>
-<li>aesthetics of alpha, size, linewidth, and linetype</li>
-<li>x or y computed variables other than the default (e.g. <code>density</code> in <code>geom_histogram</code>)</li>
-<li>any geom that has a col or fill computed variable (e.g. <code>geom_bin2d</code>)</li>
+<li>
+<em>aesthetics</em> of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>
+</li>
+<li>x or y <em>computed</em> variables other than the default (e.g. <code>density</code> in <code>geom_histogram</code>)</li>
+<li>any geom that has a col <em>computed</em> variable (e.g. <code>geom_bin2d</code>)</li>
 </ul>
-<p>For aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, and <code>linetype</code>, you can use <code>gg_blank</code> in addition to a <code>col</code> argument and then add the title of your new aesthetic to align with the col_title.</p>
+<p>For aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>, you can use <code>gg_blank</code> in addition to a <code>col</code> argument and then add the title of your new aesthetic to align with the <code>col_title</code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, col <span class="op">=</span> <span class="va">species</span><span class="op">)</span> <span class="op">+</span></span>
