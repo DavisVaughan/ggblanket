@@ -87,7 +87,7 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>ggblanket is a package of wrapper functions around the fantastic ggplot2 package.</p>
-<p>The primary objective is to <strong>simplify visualisation</strong>.</p>
+<p>The primary objective is to <strong>simplify ggplot2 visualisation</strong>.</p>
 <p>Secondary objectives relate to:</p>
 <ul>
 <li>Scope: cover the most useful 80% of what ggplot2 does</li>
@@ -105,10 +105,10 @@
 <div class="section level2">
 <h2 id="how-it-works">How it works<a class="anchor" aria-label="anchor" href="#how-it-works"></a>
 </h2>
-<p>To simplify visualisation, the ggblanket package provides:</p>
+<p>To simplify ggplot2 visualisation, the ggblanket package provides:</p>
 <ul>
 <li>
-<code>gg_*</code> functions to plot a single geom</li>
+<code>gg_*</code> wrapper functions to plot a single geom</li>
 <li>col and fill aesthetics merged into a single <code>col</code> argument</li>
 <li>Colours customised via a <code>pal</code> argument consistently</li>
 <li>A <code>facet</code> argument to facet in a “wrap” or “grid” layout</li>
@@ -127,7 +127,7 @@
 </li>
 </ul>
 <div class="section level3">
-<h3 id="gg_-functions-to-plot-a-single-geom">1. <code>gg_*</code> functions to plot a single geom<a class="anchor" aria-label="anchor" href="#gg_-functions-to-plot-a-single-geom"></a>
+<h3 id="gg_-wrapper-functions-to-plot-a-single-geom">1. <code>gg_*</code> wrapper functions to plot a single geom<a class="anchor" aria-label="anchor" href="#gg_-wrapper-functions-to-plot-a-single-geom"></a>
 </h3>
 <p>These <code>gg_*</code>functions each wrap a ggplot2 <code>ggplot(aes(...))</code> function with the applicable ggplot2 <code>geom_*()</code> function.</p>
 <p>Always pipe in your data, so that you can access variable names from the Rstudio autocomplete.</p>
