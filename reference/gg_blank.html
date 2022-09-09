@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,6 +103,7 @@
 <span>  col_legend_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_legend_rev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_rescale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -307,6 +308,10 @@
 
 <dt>col_limits</dt>
 <dd><p>A vector to determine the limits of the axis.</p></dd>
+
+
+<dt>col_rescale</dt>
+<dd><p>For a continuous col variable, rescale the position of each pal colour using the scales::rescale function.</p></dd>
 
 
 <dt>col_title</dt>
