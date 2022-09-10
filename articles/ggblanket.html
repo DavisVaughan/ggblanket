@@ -106,7 +106,7 @@
 <h2 id="how-it-works">How it works<a class="anchor" aria-label="anchor" href="#how-it-works"></a>
 </h2>
 <p>To simplify ggplot2 visualisation, the ggblanket package provides:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>
 <code>gg_*</code> wrapper functions to plot a single geom</li>
 <li>col and fill aesthetics merged into a single <code>col</code> argument</li>
@@ -116,8 +116,9 @@
 <li>Ability to customise via arguments with consistent prefix’s</li>
 <li>Unspecified titles converted to <code>snakecase::to_sentence</code>
 </li>
-<li>Horizontal labels, colours and legends generally arranged in correct order</li>
+<li>Horizontal labels, colours and legends <em>generally</em> arranged in correct order</li>
 <li>Nice default scales and theme</li>
+<li>Colouring that <em>generally</em> enables inheriting to subsequent layers</li>
 <li>Access to other <code>geom_*</code> arguments via <code>...</code>
 </li>
 <li>A <code>theme</code> argument for customisation</li>
@@ -125,11 +126,12 @@
 <li>A way to easily create your own customised plot functions</li>
 <li>Control over <code><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">plotly::ggplotly</a></code> tooltips with <code>add_tooltip_text</code>
 </li>
-</ul>
+</ol>
 <div class="section level3">
 <h3 id="gg_-wrapper-functions-to-plot-a-single-geom">1. <code>gg_*</code> wrapper functions to plot a single geom<a class="anchor" aria-label="anchor" href="#gg_-wrapper-functions-to-plot-a-single-geom"></a>
 </h3>
 <p>These <code>gg_*</code>functions each wrap a ggplot2 <code>ggplot(aes(...))</code> function with the applicable ggplot2 <code>geom_*()</code> function.</p>
+<p>All aesthetics (other than <code>text</code>) are within the <code>ggplot</code> function, and therefore will inherit to any subsequent geom’s added by default.</p>
 <p>Always pipe in your data, so that you can access variable names from the Rstudio autocomplete.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span></span>
@@ -229,6 +231,8 @@
 <li>
 <code>col_continuous</code> How to colour a continuous variable (e.g. “steps”)</li>
 <li>
+<code>col_rescale</code>: whether to rescale the pal across a continuous col variable</li>
+<li>
 <code>col_legend_place</code>: Place to put the legend (e.g. “r”)</li>
 <li>
 <code>col_legend_ncol</code>: Number of columns to arrange legend elements into</li>
@@ -291,7 +295,7 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-8-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="horizontal-labels-colours-and-legends-generally-arranged-in-correct-order">8. Horizontal labels, colours and legends generally arranged in correct order<a class="anchor" aria-label="anchor" href="#horizontal-labels-colours-and-legends-generally-arranged-in-correct-order"></a>
+<h3 id="horizontal-labels-colours-and-legends-generally-arranged-in-correct-order">8. Horizontal labels, colours and legends <em>generally</em> arranged in correct order<a class="anchor" aria-label="anchor" href="#horizontal-labels-colours-and-legends-generally-arranged-in-correct-order"></a>
 </h3>
 <p>When plots are horizontal, ggblanket ensures y labels, colours and legends are generally in the right order.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -335,11 +339,27 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-10-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="access-to-other-geom_-arguments-via----">10. Access to other <code>geom_*</code> arguments via <code>...</code><a class="anchor" aria-label="anchor" href="#access-to-other-geom_-arguments-via----"></a>
+<h3 id="a-pal-that-is-generally-inherited-to-additional-geoms">10. A pal that is generally inherited to additional geoms<a class="anchor" aria-label="anchor" href="#a-pal-that-is-generally-inherited-to-additional-geoms"></a>
+</h3>
+<p>The pal is <em>generally</em> inherited to subsequent geom layers regardless of whether there is a <code>col</code> aesthetic.</p>
+<p>This often looks really nice.</p>
+<p>It does this because ‘under the hood’, dummy <code>col</code> and <code>fill</code> aesthetic variables are added, and a colour scale is then added with the legend turned off.</p>
+<p>This approach in great in most simple plots, but can cause some challenges. These are discussed further in the ‘Getting around limitations’ section.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/gg_boxplot.html">gg_boxplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
+<span>             width <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>             pal <span class="op">=</span> <span class="st">"#1B9E77"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-11-1.png" width="70%"></p>
+</div>
+<div class="section level3">
+<h3 id="access-to-other-geom_-arguments-via----">11. Access to other <code>geom_*</code> arguments via <code>...</code><a class="anchor" aria-label="anchor" href="#access-to-other-geom_-arguments-via----"></a>
 </h3>
 <p>This relates to all other arguments other than the mapping argument with aesthetics.</p>
 <p>Common arguments to add are <code>size</code>, <code>linewidth</code> and <code>width</code>. All arguments and can be identified through the help on the relevant <code>ggplot2::geom_*</code> function.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/gg_smooth.html">gg_smooth</a></span><span class="op">(</span></span>
@@ -352,16 +372,16 @@
 <span>    col_title <span class="op">=</span> <span class="st">""</span>, </span>
 <span>    col_labels <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span></span>
 <span>  <span class="op">)</span> </span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-11-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-12-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-theme-argument-for-customisation">11. A <code>theme</code> argument for customisation<a class="anchor" aria-label="anchor" href="#a-theme-argument-for-customisation"></a>
+<h3 id="a-theme-argument-for-customisation">12. A <code>theme</code> argument for customisation<a class="anchor" aria-label="anchor" href="#a-theme-argument-for-customisation"></a>
 </h3>
 <p>This allows you to utilise the simplicity of ggblanket, while making content that has your required look and feel.</p>
 <p>By using the <code>theme</code> argument, your theme will control all theme aspects, <em>other</em> than the legend position, direction and justification.</p>
 <p>These are controlled within the <code>gg_*</code> function, so that legend positions can be adjusted easily with the <code>col_legend_place</code> argument (e.g. `<code>col_legend_place = "r"</code>).</p>
 <p>If you prefer to have your <code>theme</code> adjust everything <em>including</em> the legend, then add your theme as a layer instead (e.g. <code>+ theme_grey()</code>).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
@@ -370,16 +390,16 @@
 <span>           facet <span class="op">=</span> <span class="va">species</span>, </span>
 <span>           pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#1B9E77"</span>, <span class="st">"#9E361B"</span><span class="op">)</span>, </span>
 <span>           theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-12-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-13-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-gg_theme-function-to-create-a-quick-theme">12. A <code>gg_theme</code> function to create a quick theme<a class="anchor" aria-label="anchor" href="#a-gg_theme-function-to-create-a-quick-theme"></a>
+<h3 id="a-gg_theme-function-to-create-a-quick-theme">13. A <code>gg_theme</code> function to create a quick theme<a class="anchor" aria-label="anchor" href="#a-gg_theme-function-to-create-a-quick-theme"></a>
 </h3>
 <p>The <code>gg_theme</code> function allows you to create a theme that looks similar to the ggblanket look and feel.</p>
 <p>This includes the following arguments for adjusting gridlines, background colours, text and axis lines and ticks.</p>
 <p>Use the <code>grid_h</code> and <code>grid_v</code> logical arguments to add gridlines. Otherwise this function defaults to no gridlines.</p>
 <p>There is a <code>void = TRUE</code> argument that is useful for maps.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">storms</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">year</span>, <span class="fl">1980</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -394,13 +414,13 @@
 <span>      bg_plot_pal <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>      bg_panel_pal <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>      grid_h <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-13-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-14-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-way-to-easily-create-your-own-customised-plot-functions">13. A way to easily create your own customised plot functions<a class="anchor" aria-label="anchor" href="#a-way-to-easily-create-your-own-customised-plot-functions"></a>
+<h3 id="a-way-to-easily-create-your-own-customised-plot-functions">14. A way to easily create your own customised plot functions<a class="anchor" aria-label="anchor" href="#a-way-to-easily-create-your-own-customised-plot-functions"></a>
 </h3>
 <p>This is because the <code>...</code> argument can allow you to access <em>all</em> arguments within the ggblanket <code>gg_</code> function.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gg_point_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">col</span>, </span>
 <span>                            <span class="va">size</span> <span class="op">=</span> <span class="fl">3</span>, </span>
 <span>                            <span class="va">pal</span> <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, </span>
@@ -426,13 +446,13 @@
 <span>    subtitle <span class="op">=</span> <span class="st">"Iris sepal length by width and species"</span>,</span>
 <span>    caption <span class="op">=</span> <span class="st">"Edgar Anderson, 1935"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-14-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-15-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="control-over-plotlyggplotly-tooltips-with-add_tooltip_text">14. Control over <code>plotly::ggplotly</code> tooltips with <code>add_tooltip_text</code><a class="anchor" aria-label="anchor" href="#control-over-plotlyggplotly-tooltips-with-add_tooltip_text"></a>
+<h3 id="control-over-plotlyggplotly-tooltips-with-add_tooltip_text">15. Control over <code>plotly::ggplotly</code> tooltips with <code>add_tooltip_text</code><a class="anchor" aria-label="anchor" href="#control-over-plotlyggplotly-tooltips-with-add_tooltip_text"></a>
 </h3>
 <p>The <code>add_tooltip_text</code> function allows users to create nice tooltips in combination with the <code>gg_*()</code> <code>text</code> argument, and the <code>tooltip = "text"</code> argument in <code>ggplotly</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">theme_custom</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_theme.html">gg_theme</a></span><span class="op">(</span></span>
 <span>  <span class="st">"helvetica"</span>,</span>
 <span>  bg_plot_pal <span class="op">=</span> <span class="st">"white"</span>,</span>
@@ -458,23 +478,16 @@
 <h2 id="getting-around-limitations">Getting around limitations<a class="anchor" aria-label="anchor" href="#getting-around-limitations"></a>
 </h2>
 <p>Like everything, ggblanket has it’s limitations.</p>
-<p>You cannot easily plot:</p>
-<ul>
-<li>
-<em>aesthetics</em> of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>
-</li>
-<li>x or y <em>computed</em> variables other than the default (e.g. <code>density</code> in <code>geom_histogram</code>)</li>
-<li>any geom that has a col <em>computed</em> variable (e.g. <code>geom_bin2d</code>)</li>
-</ul>
+<p>You cannot easily plot: * <em>aesthetics</em> of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code> * x or y <em>computed</em> variables other than the default (e.g. <code>density</code> in <code>geom_histogram</code>) * any geom that has a col <em>computed</em> variable (e.g. <code>geom_bin2d</code>)</p>
 <p>For aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>, you can use <code>gg_blank</code> in addition to a <code>col</code> argument and then add the title of your new aesthetic to align with the <code>col_title</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, col <span class="op">=</span> <span class="va">species</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-17-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-18-1.png" width="70%"></p>
 <p>If you wish to use non-default <em>computed</em> <code>x</code> or <code>y</code> variables, you need to use <code>ggplot2</code>. You can mimic the ggblanket look and feel if you would like using <code>gg_theme</code> and other <code>scale_*</code> modifications. Alternatively, you could instead settle for using the default <em>computed</em> variable with ggblanket.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, </span>
@@ -485,9 +498,9 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>                     breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html" class="external-link">breaks_pretty</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Carat"</span>, y <span class="op">=</span> <span class="st">"Density"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-18-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-19-1.png" width="70%"></p>
 <p>All geom’s that use a <em>computed</em> <code>col</code> variable are not supported by ggblanket, and you will have to use ggplot2 for these plots.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="external-link">geom_bin_2d</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span>, fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -497,7 +510,7 @@
 <span>                     breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html" class="external-link">breaks_pretty</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, </span>
 <span>                     limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html" class="external-link">breaks_pretty</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">(</span><span class="va">diamonds</span><span class="op">$</span><span class="va">price</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Carat"</span>, y <span class="op">=</span> <span class="st">"Price"</span>, fill <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-19-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-20-1.png" width="70%"></p>
 <p>For some ggplot2 functionality unsupported by ggblanket, you will be able to add a ggplot2 layer to your ggblanket code. For example, using <code>+ labs(x = NULL)</code> or <code>+ facet_grid(..., switch = "y")</code>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
