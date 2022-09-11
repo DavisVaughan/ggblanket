@@ -341,7 +341,7 @@
 <div class="section level3">
 <h3 id="a-pal-that-is-generally-inherited-to-additional-geoms">10. A pal that is generally inherited to additional geoms<a class="anchor" aria-label="anchor" href="#a-pal-that-is-generally-inherited-to-additional-geoms"></a>
 </h3>
-<p>The pal is <em>generally</em> inherited to subsequent geom layers regardless of whether there is a <code>col</code> aesthetic.</p>
+<p>The pal is <em>generally</em> inherited to subsequent geom layers regardless of whether there is a <code>col</code> argument.</p>
 <p>This often looks really nice.</p>
 <p>It does this because ‘under the hood’, dummy <code>col</code> and <code>fill</code> aesmthetic variables are added, and a colour scale is then added with the legend turned off.</p>
 <p>This approach in great in most simple plots but can cause some challenges. These are discussed further in the ‘Multiple geom layers’ section.</p>
@@ -478,8 +478,8 @@
 <div class="section level2">
 <h2 id="multiple-geom-layers">Multiple geom layers<a class="anchor" aria-label="anchor" href="#multiple-geom-layers"></a>
 </h2>
-<p>For <em>all</em> plots with multiple geom’s, you will need to think about if there is any desired drawing order you want, and if so choose the <code>gg_*</code> function of the layer you would like on the bottom.</p>
-<p>For plots where some geoms have a col aesthetic and some do not, you must choose a <code>gg_*</code> function that relates one of the layers with a col aesthetic. Or, if this conficts the desired drawing order, then choose <code>gg_blank</code>. The reason for this is as alluded to earlier, of how ggblanket under the hood creates a dummy col scale for when there is no <code>col</code> aesthetic.</p>
+<p>For <em>all</em> plots with multiple geom’s, you will need to think about if there is any desired drawing order you want, and if so choose the <code>gg_*</code> function that permits this order.</p>
+<p>For plots where some geoms have a<code>col</code> aesthetic and some do not, you must choose a <code>gg_*</code> function that relates one of the layers with a col argument. Or, if this conficts the desired drawing order, then choose <code>gg_blank</code>. The reason for this is as alluded to earlier, of how ggblanket under the hood creates a dummy col scale for when there is no <code>col</code> argument.</p>
 <p>Once you know you’re <code>gg_*</code> function you are going to use, then you might need to use the <code>*_include</code> argument to adjust the x and y scale if it will not include all of the range needed by subsequent layers.</p>
 <p>If subsequent layers do <em>not</em> require all of the aesthetics from the <code>gg_*</code> function, use the <code>inherit.aes = FALSE</code> argument in the <code>geom_*</code> function.</p>
 <p>For example, to make a coloured column graph with grey error bars, use the <code>gg_col</code> function as this layer has a col aesthetic and the drawing order means it should be underneath the errorbars.</p>
@@ -512,7 +512,7 @@
 <div class="section level2">
 <h2 id="other-challenges">Other challenges<a class="anchor" aria-label="anchor" href="#other-challenges"></a>
 </h2>
-<p><code>gg_*</code> functions do not directly support aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>. However, you could use <code>gg_blank</code> in addition to a <code>col</code> aesthetic, and then add the title of your new aesthetic to align with the <code>col_title</code>.</p>
+<p><code>gg_*</code> functions do not directly support aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>. However, you could use <code>gg_blank</code> in addition to a <code>col</code> argument, and then add the title of your new aesthetic to align with the <code>col_title</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, col <span class="op">=</span> <span class="va">species</span><span class="op">)</span> <span class="op">+</span></span>
