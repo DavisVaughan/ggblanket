@@ -479,8 +479,8 @@
 <h2 id="multiple-geom-layers">Multiple geom layers<a class="anchor" aria-label="anchor" href="#multiple-geom-layers"></a>
 </h2>
 <p>For <em>all</em> plots with multiple geom’s, you will need to think about if there is any desired drawing order you want, and if so choose the <code>gg_*</code> function that permits this order.</p>
-<p>For plots where some geoms have a<code>col</code> aesthetic and some do not, you must choose a <code>gg_*</code> function that relates one of the layers with a col argument. Or, if this conficts the desired drawing order, then choose <code>gg_blank</code>. The reason for this is as alluded to earlier, of how ggblanket under the hood creates a dummy col scale for when there is no <code>col</code> argument.</p>
-<p>Once you know you’re <code>gg_*</code> function you are going to use, then you might need to use the <code>*_include</code> argument to adjust the x and y scale if it will not include all of the range needed by subsequent layers.</p>
+<p>For plots where some geoms have a<code>col</code> aesthetic and some do not, you must choose a <code>gg_*</code> function that relates to one of the layers with a <code>col</code> argument. Or, if this conflicts with the desired drawing order, then choose <code>gg_blank</code> (i.e. with the <code>col</code> argument). The reason for this is that ggblanket under the hood creates a dummy colour scale for when there is no <code>col</code> argument.</p>
+<p>Once you know what <code>gg_*</code> function you are going to use, then you might need to use the <code>*_include</code> argument to adjust the x or y scale if it will not include all of the range needed by subsequent layers.</p>
 <p>If subsequent layers do <em>not</em> require all of the aesthetics from the <code>gg_*</code> function, use the <code>inherit.aes = FALSE</code> argument in the <code>geom_*</code> function.</p>
 <p>For example, to make a coloured column graph with grey error bars, use the <code>gg_col</code> function as this layer has a col aesthetic and the drawing order means it should be underneath the errorbars.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
