@@ -378,6 +378,7 @@
 <p>By using the <code>theme</code> argument, your theme will control all theme aspects, <em>other</em> than the legend position, direction and justification.</p>
 <p>These are controlled within the <code>gg_*</code> function, so that legend positions can be adjusted easily with the <code>col_legend_place</code> argument (e.g. `<code>col_legend_place = "r"</code>).</p>
 <p>If you prefer to have your <code>theme</code> adjust everything <em>including</em> the legend, then add your theme as a layer instead (e.g. <code>+ theme_grey()</code>).</p>
+<p>Note if you use the default theme, ggblanket guesses the gridlines you want based on the type of data provided to the <code>gg_*</code> function. If you provide a theme, you will need that theme to provide any gridlines that you want.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
