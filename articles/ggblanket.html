@@ -109,21 +109,21 @@
 <ol style="list-style-type: decimal">
 <li>
 <code>gg_*</code> wrapper functions to plot a single geom</li>
-<li>col and fill aesthetics merged into a single <code>col</code> argument</li>
-<li>A <code>facet</code> argument to effortlessly facet</li>
+<li>A single <code>col</code> argument to colour and fill by a variable</li>
+<li>A <code>facet</code> argument to facet by a variable</li>
 <li>An additional <code>facet2</code> argument to facet by a second variable</li>
 <li>A <code>pal</code> argument to customise colours</li>
-<li>Prefixed arguments to customise scales, guides, titles and facetting</li>
-<li>Default titles converted to <code>snakecase::to_sentence</code>
+<li>Prefixed arguments to customise scales, guides, titles and faceting</li>
+<li>Default titles converted with <code>snakecase::to_sentence</code>
 </li>
-<li>Numeric limits that default to the max/min break</li>
-<li>Horizontal plots nicely arranged</li>
-<li>Colours that generally inherit to subsequent geoms</li>
+<li>Numeric limits that default to the min and max break</li>
+<li>Horizontal plots with y labels in order etc</li>
+<li>A <code>pal</code> that generally inherits to subsequent geoms</li>
 <li>Access to other <code>geom_*</code> arguments via <code>...</code>
 </li>
-<li>A <code>theme</code> argument for customisation</li>
+<li>A <code>theme</code> argument to customise the look and feel</li>
 <li>A <code>gg_theme</code> function to create a quick theme</li>
-<li>A way to easily create your own customised plot functions</li>
+<li>A way to create powerful custom plot functions</li>
 <li>Control over <code><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">plotly::ggplotly</a></code> tooltips with <code>add_tooltip_text</code>
 </li>
 </ol>
@@ -143,9 +143,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-2-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="col-and-fill-aesthetics-merged-into-a-single-col-argument">2. col and fill aesthetics merged into a single <code>col</code> argument<a class="anchor" aria-label="anchor" href="#col-and-fill-aesthetics-merged-into-a-single-col-argument"></a>
+<h3 id="a-single-col-argument-to-colour-and-fill-by-a-variable">2.A single <code>col</code> argument to colour and fill by a variable<a class="anchor" aria-label="anchor" href="#a-single-col-argument-to-colour-and-fill-by-a-variable"></a>
 </h3>
-<p>There is no <code>fill</code> concept in ggblanket. Instead, <code>col</code> relates to both the <code>col</code> and <code>fill</code> concepts of ggplot2.</p>
+<p>{ggblanket} merges the col and fill aesthetics of ggplot2 into one concept represented by the <code>col</code> argument. In ggplot2 language, this argument always represents both col and fill.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_histogram.html">gg_histogram</a></span><span class="op">(</span></span>
@@ -154,9 +154,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-3-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-facet-argument-to-effortlessly-facet">3. A <code>facet</code> argument to effortlessly facet<a class="anchor" aria-label="anchor" href="#a-facet-argument-to-effortlessly-facet"></a>
+<h3 id="a-facet-argument-to-facet-by-a-variable">3. A <code>facet</code> argument to facet by a variable<a class="anchor" aria-label="anchor" href="#a-facet-argument-to-facet-by-a-variable"></a>
 </h3>
-<p>Facetting is treated as if it is an aesthetic, where the users just provide an unquoted variable to facet by.</p>
+<p>faceting is treated essentially as if it were an aesthetic, where users just provide an unquoted variable to facet by.</p>
 <p>If a single facet (or facet2) variable is provided, it’ll default to a “wrap” layout. But you can change this with a <code>facet_layout = "grid"</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
@@ -171,8 +171,8 @@
 <div class="section level3">
 <h3 id="an-additional-facet2-argument-to-facet-by-a-second-variable">4. An additional <code>facet2</code> argument to facet by a second variable<a class="anchor" aria-label="anchor" href="#an-additional-facet2-argument-to-facet-by-a-second-variable"></a>
 </h3>
-<p>Faceting by two variables is often useful.</p>
-<p>If both <code>facet</code>and <code>facet2</code> variables are provided, then the gg_* function will default to a “grid” layout of <code>facet</code> by <code>facet2</code>. But you can change this with a <code>facet_layout = "wrap"</code> argument.</p>
+<p>A <code>facet2</code> argument is also provided for extra functionality and flexibility.</p>
+<p>If both <code>facet</code>and <code>facet2</code> variables are provided, then it’ll default to a “grid” layout of <code>facet</code> by <code>facet2</code>. But you can change this with a <code>facet_layout = "wrap"</code> argument.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -204,7 +204,7 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-6-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="prefixed-arguments-to-customise-scales-guides-titles-and-facetting">6. Prefixed arguments to customise scales, guides, titles and facetting<a class="anchor" aria-label="anchor" href="#prefixed-arguments-to-customise-scales-guides-titles-and-facetting"></a>
+<h3 id="prefixed-arguments-to-customise-scales-guides-titles-and-faceting">6. Prefixed arguments to customise scales, guides, titles and faceting<a class="anchor" aria-label="anchor" href="#prefixed-arguments-to-customise-scales-guides-titles-and-faceting"></a>
 </h3>
 <p>These prefixed arguments are designed to work with the Rstudio autocomplete to help you remember and find the adjustment you need.</p>
 <p>Determine whether what you want to change relates to <code>x</code>,<code>y</code>, <code>col</code> or <code>facet</code>, and then type this prefix and press the tab key to access the list from autocomplete. Then use arrow keys, and press tab again to select.</p>
@@ -264,7 +264,7 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-7-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="default-titles-converted-to-snakecaseto_sentence">7. Default titles converted to <code>snakecase::to_sentence</code><a class="anchor" aria-label="anchor" href="#default-titles-converted-to-snakecaseto_sentence"></a>
+<h3 id="default-titles-converted-with-snakecaseto_sentence">7. Default titles converted with <code>snakecase::to_sentence</code><a class="anchor" aria-label="anchor" href="#default-titles-converted-with-snakecaseto_sentence"></a>
 </h3>
 <p>This will make quicker to get to a plot that has titles that are good for external people to see, and will often work nicely for your <code>snakecase</code> column names.</p>
 <p>For titles that you need to change manually, you can change manually using <code>x_title</code>, <code>y_title</code>, or <code>col_title</code>.</p>
@@ -292,7 +292,7 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-8-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="numeric-limits-that-default-to-the-maxmin-break">8. Numeric limits that default to the max/min break<a class="anchor" aria-label="anchor" href="#numeric-limits-that-default-to-the-maxmin-break"></a>
+<h3 id="numeric-limits-that-default-to-the-min-and-max-break">8. Numeric limits that default to the min and max break<a class="anchor" aria-label="anchor" href="#numeric-limits-that-default-to-the-min-and-max-break"></a>
 </h3>
 <p>The default x and y scales have been designed to create symmetry.</p>
 <p>If the <code>y</code> is numeric, the y limits will default to the max of the <code>y</code> breaks with zero <code>y</code> expanding. It will do similar with the <code>x</code> scale, if <code>y</code> is character/factor/logical and <code>x</code> is numeric.</p>
@@ -316,9 +316,10 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-9-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="horizontal-plots-nicely-arranged">9. Horizontal plots nicely arranged<a class="anchor" aria-label="anchor" href="#horizontal-plots-nicely-arranged"></a>
+<h3 id="horizontal-plots-with-y-labels-in-order-etc">9. Horizontal plots with y labels in order etc<a class="anchor" aria-label="anchor" href="#horizontal-plots-with-y-labels-in-order-etc"></a>
 </h3>
-<p>When plots are horizontal, ggblanket ensures y labels, colours and legends are generally in the right order.</p>
+<p>When plots are horizontal, ggblanket ensures y labels are in order.</p>
+<p>The position of bars, <code>pal</code> colours and legend elements will mostly be in the right order too.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -335,9 +336,9 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-10-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="colours-that-generally-inherit-to-subsequent-geoms">10. Colours that generally inherit to subsequent geoms<a class="anchor" aria-label="anchor" href="#colours-that-generally-inherit-to-subsequent-geoms"></a>
+<h3 id="a-pal-that-inherits-to-subsequent-geoms">10. A <code>pal</code> that inherits to subsequent geoms<a class="anchor" aria-label="anchor" href="#a-pal-that-inherits-to-subsequent-geoms"></a>
 </h3>
-<p>The pal is generally inherited to subsequent geom layers regardless of whether there is a <code>col</code> argument.</p>
+<p>The <code>pal</code> is generally inherited to subsequent geom layers regardless of whether there is a <code>col</code> argument.</p>
 <p>It does this because ‘under the hood’, dummy <code>col</code> and <code>fill</code> aesmthetic variables are added, and a colour scale is then added with the legend turned off.</p>
 <p>This approach can cause some challenges. These are discussed further in the ‘Multiple geom layers’ section.</p>
 <p>Note <code>alpha</code> does not inherit.</p>
@@ -372,13 +373,12 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-12-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-theme-argument-for-customisation">12. A <code>theme</code> argument for customisation<a class="anchor" aria-label="anchor" href="#a-theme-argument-for-customisation"></a>
+<h3 id="a-theme-argument-to-customise-the-look-and-feel">12. A <code>theme</code> argument to customise the look and feel<a class="anchor" aria-label="anchor" href="#a-theme-argument-to-customise-the-look-and-feel"></a>
 </h3>
 <p>This allows you to utilise the simplicity of ggblanket, while making content that has your required look and feel.</p>
-<p>By using the <code>theme</code> argument, your theme will control all theme aspects, <em>other</em> than the legend position, direction and justification.</p>
-<p>These are controlled within the <code>gg_*</code> function, so that legend positions can be adjusted easily with the <code>col_legend_place</code> argument (e.g. `<code>col_legend_place = "r"</code>).</p>
-<p>If you prefer to have your <code>theme</code> adjust everything <em>including</em> the legend, then add your theme as a layer instead (e.g. <code>+ theme_grey()</code>).</p>
-<p>Note if you use the default theme, ggblanket guesses the gridlines you want based on the type of data provided to the <code>gg_*</code> function. If you provide a theme, you will need that theme to provide any gridlines that you want.</p>
+<p>By using the <code>theme</code> argument, your theme will control all theme aspects, <em>other</em> than the legend position, direction and justification. These are controlled within the <code>gg_*</code> function, so that legend positions can be adjusted easily with the <code>col_legend_place</code> argument (e.g. `<code>col_legend_place = "r"</code>). If you prefer to have your <code>theme</code> adjust everything <em>including</em> the legend, then add your theme as a layer instead (e.g. <code>+ theme_grey()</code>).</p>
+<p>Note, the default theme within <code>gg_*</code> guesses the gridlines you might want based on the class of <code>x</code> and <code>y</code> variables in the data.</p>
+<p>If you provide a theme, it will add gridlines, as per that theme. You may want to create two versions of your custom theme: one with horizontal gridlines and one with vertical gridlines.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -393,10 +393,10 @@
 <div class="section level3">
 <h3 id="a-gg_theme-function-to-create-a-quick-theme">13. A <code>gg_theme</code> function to create a quick theme<a class="anchor" aria-label="anchor" href="#a-gg_theme-function-to-create-a-quick-theme"></a>
 </h3>
-<p>The <code>gg_theme</code> function allows you to create a theme that looks similar to the ggblanket look and feel.</p>
-<p>This includes the following arguments for adjusting gridlines, background colours, text and axis lines and ticks.</p>
+<p>The <code>gg_theme</code> function allows you to create a quick simple theme.</p>
+<p>It includes arguments for adjusting gridlines, background colours, text, axis lines and ticks.</p>
 <p>Use the <code>grid_h</code> and <code>grid_v</code> logical arguments to add gridlines. Otherwise this function defaults to no gridlines.</p>
-<p>There is a <code>void = TRUE</code> argument that is useful for maps.</p>
+<p>There is also a <code>void = TRUE</code> argument that is useful for maps.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">storms</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -415,12 +415,13 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-14-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-way-to-easily-create-your-own-customised-plot-functions">14. A way to easily create your own customised plot functions<a class="anchor" aria-label="anchor" href="#a-way-to-easily-create-your-own-customised-plot-functions"></a>
+<h3 id="a-way-to-create-powerful-custom-plot-functions">14. A way to create powerful custom plot functions<a class="anchor" aria-label="anchor" href="#a-way-to-create-powerful-custom-plot-functions"></a>
 </h3>
-<p>This is because the <code>...</code> argument can allow you to access <em>all</em> arguments within the ggblanket <code>gg_</code> function.</p>
+<p>You can easily create powerful custom functions. This is because the <code>...</code> argument can allow you to access <em>all</em> arguments within the ggblanket <code>gg_*</code> function (and applicable <code>ggplot2::geom_*</code> function).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gg_point_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">col</span>, </span>
 <span>                            <span class="va">size</span> <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>                            <span class="va">shape</span> <span class="op">=</span> <span class="fl">17</span>,</span>
 <span>                            <span class="va">pal</span> <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, </span>
 <span>                            <span class="va">col_title</span> <span class="op">=</span> <span class="st">""</span>, </span>
 <span>                            <span class="va">col_legend_place</span> <span class="op">=</span> <span class="st">"t"</span>,</span>
@@ -428,6 +429,7 @@
 <span>  <span class="va">data</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="../reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">x</span> <span class="op">}</span><span class="op">}</span>, y <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">y</span> <span class="op">}</span><span class="op">}</span>, col <span class="op">=</span> <span class="op">{</span><span class="op">{</span><span class="va">col</span><span class="op">}</span><span class="op">}</span>, </span>
 <span>             size <span class="op">=</span> <span class="va">size</span>, </span>
+<span>             shape <span class="op">=</span> <span class="va">shape</span>,</span>
 <span>             pal <span class="op">=</span> <span class="va">pal</span>, </span>
 <span>             col_title <span class="op">=</span> <span class="va">col_title</span>, </span>
 <span>             col_legend_place <span class="op">=</span> <span class="va">col_legend_place</span>, </span>
