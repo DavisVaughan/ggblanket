@@ -268,7 +268,7 @@
 </h3>
 <p>This will make quicker to get to a plot that has titles that are good for external people to see, and will often work nicely for your <code>snakecase</code> column names.</p>
 <p>For titles that you need to change manually, you can change manually using <code>x_title</code>, <code>y_title</code>, or <code>col_title</code>.</p>
-<p>To remove titles, you can use <code>x_title = ""</code> within the <code>gg_*</code> function and equivalent for the y and col titles. Or add a <code>+ ggplot2::labs(x = NULL, y = NULL, col = NULL, fill = NULL)</code> layer as applicable.</p>
+<p>To remove titles, you can use <code>x_title = ""</code> within the <code>gg_*</code> function and equivalent for the y and col titles.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -528,7 +528,7 @@
 <span>    coord <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">190</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    x_breaks <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/breaks_width.html" class="external-link">breaks_width</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-20-1.png" width="70%"></p>
-<p>For some ggplot2 functionality unsupported by ggblanket, you can add the applicable ggplot2 layer to your ggblanket code. For example, using <code>+ labs(x = NULL)</code> or <code>+ facet_grid(..., switch = "y")</code>.</p>
+<p>For some ggplot2 functionality unsupported by ggblanket, you can add the applicable ggplot2 layer to your ggblanket code. For example, using <code>+ facet_grid(..., switch = "y")</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -538,12 +538,12 @@
 <span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
 <span>    col <span class="op">=</span> <span class="va">sex</span>, </span>
 <span>    size <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    x_title <span class="op">=</span> <span class="st">""</span>,</span>
 <span>    y_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>,</span>
 <span>             rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span>, </span>
 <span>             switch <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>strip.switch.pad.grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>strip.switch.pad.grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-21-1.png" width="70%"></p>
 <p>Some functionality is just not supported in ggblanket. For example, you cannot use <em>computed</em> variables. Instead you will need to use ggplot2, if these are required.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
