@@ -44,7 +44,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Line ggplot.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/davidhodge931/ggblanket/blob/HEAD/R/gg_line.R" class="external-link"><code>R/gg_line.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/davidhodge931/ggblanket/blob/HEAD/R/DEV.R" class="external-link"><code>R/DEV.R</code></a></small>
       <div class="d-none name"><code>gg_line.Rd</code></div>
     </div>
 
@@ -65,6 +65,7 @@
 <span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  pal <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pal_na <span class="op">=</span> <span class="st">"#7F7F7F"</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -72,9 +73,9 @@
 <span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -83,6 +84,7 @@
 <span>  x_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  y_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -107,7 +109,7 @@
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  theme <span class="op">=</span> <span class="fu"><a href="gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -153,6 +155,10 @@
 <dd><p>Position adjustment. Either a character string (e.g."identity"), or a function (e.g. ggplot2::position_identity()).</p></dd>
 
 
+<dt>coord</dt>
+<dd><p>Coordinate system.</p></dd>
+
+
 <dt>pal</dt>
 <dd><p>Colours to use. A character vector of hex codes (or names).</p></dd>
 
@@ -181,16 +187,16 @@
 <dd><p>Subtitle string.</p></dd>
 
 
-<dt>coord</dt>
-<dd><p>Coordinate system.</p></dd>
-
-
 <dt>x_breaks</dt>
 <dd><p>A function on the limits (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
 
 
 <dt>x_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>x_grid</dt>
+<dd><p>TRUE or FALSE for vertical x gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>x_include</dt>
@@ -223,6 +229,10 @@
 
 <dt>y_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>y_grid</dt>
+<dd><p>TRUE or FALSE of horizontal y gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>y_include</dt>
