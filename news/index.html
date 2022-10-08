@@ -49,7 +49,11 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.9000" id="ggblanket-149000">ggblanket 1.4.9000<a class="anchor" aria-label="anchor" href="#ggblanket-149000"></a></h2>
-<ul><li>Make <code>col_legend_place</code> default “r” where numeric col variable.</li>
+<ul><li>Made <code>col_limits</code> work on numeric variables.</li>
+<li>Added <code>col_trans</code> argument.</li>
+<li>Redesigned internal <code>x</code> and <code>y</code> scales.</li>
+<li>Made <code>x</code> and <code>y</code> scale limits default to <code>c(NA, NA)</code> rather than <code>NULL</code>.</li>
+<li>Made <code>col_legend_place</code> default “r” where numeric col variable.</li>
 <li>Breaking: redesigned <code>gg_theme</code>.</li>
 <li>Added <code>gg_bin2d</code> function.</li>
 <li>Added <code>gg_hex</code> function.</li>
@@ -58,7 +62,6 @@
 <li>Supported <code>x</code> and <code>y</code> datetime variables.</li>
 <li>Supported <code>x</code> and <code>y</code> time variables.</li>
 <li>Added <code>col_rescale</code> argument to rescale a colour gradient.</li>
-<li>Added shortcut values for <code>col_continuous</code>.</li>
 <li>Added longer values for <code>col_legend_place</code> in addition to shortcuts.</li>
 </ul></div>
     <div class="section level2">
