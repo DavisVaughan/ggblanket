@@ -64,7 +64,6 @@
 <span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat <span class="op">=</span> <span class="st">"bin2d"</span>,</span>
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
-<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  pal <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pal_na <span class="op">=</span> <span class="st">"#7F7F7F"</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -72,6 +71,7 @@
 <span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -101,6 +101,7 @@
 <span>  col_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_rescale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -150,10 +151,6 @@
 <dd><p>Position adjustment. Either a character string (e.g."identity"), or a function (e.g. ggplot2::position_identity()).</p></dd>
 
 
-<dt>coord</dt>
-<dd><p>Coordinate system.</p></dd>
-
-
 <dt>pal</dt>
 <dd><p>Colours to use. A character vector of hex codes (or names).</p></dd>
 
@@ -171,7 +168,7 @@
 
 
 <dt>titles</dt>
-<dd><p>A function to format the x, y and col titles, including in rlang lambda format. Defaults to snakecase::to_sentence_case.</p></dd>
+<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
 
 
 <dt>title</dt>
@@ -180,6 +177,10 @@
 
 <dt>subtitle</dt>
 <dd><p>Subtitle string.</p></dd>
+
+
+<dt>coord</dt>
+<dd><p>Coordinate system.</p></dd>
 
 
 <dt>x_breaks</dt>
@@ -215,7 +216,7 @@
 
 
 <dt>x_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>y_breaks</dt>
@@ -251,7 +252,7 @@
 
 
 <dt>y_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>col_breaks</dt>
@@ -296,6 +297,10 @@
 
 <dt>col_title</dt>
 <dd><p>Legend title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+
+
+<dt>col_trans</dt>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>facet_labels</dt>

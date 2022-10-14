@@ -73,9 +73,10 @@
 <span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -84,6 +85,7 @@
 <span>  x_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  y_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -101,6 +103,7 @@
 <span>  col_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_rescale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -108,7 +111,7 @@
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  theme <span class="op">=</span> <span class="fu"><a href="gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -175,7 +178,7 @@
 
 
 <dt>titles</dt>
-<dd><p>A function to format the x, y and col titles, including in rlang lambda format. Defaults to snakecase::to_sentence_case.</p></dd>
+<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
 
 
 <dt>title</dt>
@@ -196,6 +199,10 @@
 
 <dt>x_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>x_grid</dt>
+<dd><p>TRUE or FALSE for vertical x gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>x_include</dt>
@@ -219,7 +226,7 @@
 
 
 <dt>x_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>y_breaks</dt>
@@ -228,6 +235,10 @@
 
 <dt>y_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>y_grid</dt>
+<dd><p>TRUE or FALSE of horizontal y gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>y_include</dt>
@@ -251,7 +262,7 @@
 
 
 <dt>y_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>col_breaks</dt>
@@ -296,6 +307,10 @@
 
 <dt>col_title</dt>
 <dd><p>Legend title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
+
+
+<dt>col_trans</dt>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>facet_labels</dt>

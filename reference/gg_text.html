@@ -73,9 +73,10 @@
 <span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -84,6 +85,7 @@
 <span>  x_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  y_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_include <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  y_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -101,6 +103,7 @@
 <span>  col_limits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_rescale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_trans <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  facet_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -108,7 +111,7 @@
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  theme <span class="op">=</span> <span class="fu"><a href="gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -175,7 +178,7 @@
 
 
 <dt>titles</dt>
-<dd><p>A function to format the x, y and col titles, including in rlang lambda format. Defaults to snakecase::to_sentence_case.</p></dd>
+<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
 
 
 <dt>title</dt>
@@ -191,11 +194,15 @@
 
 
 <dt>x_breaks</dt>
-<dd><p>A function that takes the limits as input (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
+<dd><p>A function on the limits (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
 
 
 <dt>x_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>x_grid</dt>
+<dd><p>TRUE or FALSE for vertical x gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>x_include</dt>
@@ -211,7 +218,7 @@
 
 
 <dt>x_sec_axis</dt>
-<dd><p>A secondary axis specified by the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
+<dd><p>A secondary axis using the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
 
 
 <dt>x_title</dt>
@@ -219,15 +226,19 @@
 
 
 <dt>x_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>y_breaks</dt>
-<dd><p>A function that takes the limits as input (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
+<dd><p>A function on the limits (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
 
 
 <dt>y_expand</dt>
 <dd><p>Padding to the limits with the ggplot2::expansion function, or a vector of length 2 (e.g. c(0, 0)).</p></dd>
+
+
+<dt>y_grid</dt>
+<dd><p>TRUE or FALSE of horizontal y gridlines. NULL guesses based on the classes of the x and y.</p></dd>
 
 
 <dt>y_include</dt>
@@ -243,7 +254,7 @@
 
 
 <dt>y_sec_axis</dt>
-<dd><p>A secondary axis specified by the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
+<dd><p>A secondary axis using the ggplot2::sec_axis or ggplot2::dup_axis function.</p></dd>
 
 
 <dt>y_title</dt>
@@ -251,11 +262,11 @@
 
 
 <dt>y_trans</dt>
-<dd><p>For a numeric variable, a transformation object (e.g. "log10").</p></dd>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
 
 
 <dt>col_breaks</dt>
-<dd><p>A function that takes the limits as input (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
+<dd><p>A function on the limits (e.g. scales::breaks_pretty()), or a vector of breaks.</p></dd>
 
 
 <dt>col_continuous</dt>
@@ -298,6 +309,10 @@
 <dd><p>Legend title string. Defaults to converting to sentence case with spaces. Use "" for no title.</p></dd>
 
 
+<dt>col_trans</dt>
+<dd><p>For a numeric variable, a transformation object (e.g. "log10", "sqrt" or "reverse").</p></dd>
+
+
 <dt>facet_labels</dt>
 <dd><p>A function that takes the breaks as inputs (e.g. scales::label_comma()), or a named vector of labels (e.g. c("value" = "label", ...)).</p></dd>
 
@@ -315,7 +330,7 @@
 
 
 <dt>facet_space</dt>
-<dd><p>Whether facet_space should be "fixed" across facets, "free" to be proportional in both directions, or free to be proportional in just one direction (i.e. "free_x" or "free_y"). Only applies where the facet layout is a 'grid' and facet_scales are not fixed. Defaults to "fixed".</p></dd>
+<dd><p>Whether facet space should be "fixed" across facets, "free" to be proportional in both directions, or free to be proportional in just one direction (i.e. "free_x" or "free_y"). Defaults to "fixed". Only applies where the facet layout is "grid" and facet scales are not "fixed".</p></dd>
 
 
 <dt>facet_layout</dt>
