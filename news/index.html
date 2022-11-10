@@ -49,8 +49,16 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.9000" id="ggblanket-159000">ggblanket 1.5.9000<a class="anchor" aria-label="anchor" href="#ggblanket-159000"></a></h2>
-<ul><li>Fixed bug relating to free <code>facet_scales</code>.</li>
-<li>Changed <code>gg_qq</code>, <code>qq_bin2d</code> and <code>gg_hex</code> <code>coord</code> default to <code>coord_cartesian(clip = "on")</code>.</li>
+<ul><li>Breaking: renamed <code>add_tooltip_text</code> to <code>add_tooltip</code> and changed output default column name to “tooltip”.</li>
+<li>Breaking: <code>coord</code> argument removed.</li>
+<li>
+<code>x</code> and <code>y</code> now uses limits also within coord with clip defaulted “on” and the oob set to <code><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">scales::oob_keep</a></code>.</li>
+<li>Added <code>clip</code> argument.</li>
+<li>Made code for each <code>gg_*</code> function the same other than the aesthetics and the default <code>stat</code>, <code>position</code> and <code>alpha</code>.</li>
+<li>Made <code>gg_blank</code> more powerful by adding more aesthetics to it.</li>
+<li>Made horizontal flipped plot <code>x</code> and <code>y</code> scales work better.</li>
+<li>Fixed bug relating to <code>x</code> and <code>y</code> scale limits.</li>
+<li>Fixed bug relating to free <code>facet_scales</code>.</li>
 <li>Fixed <code>gg_bin2d</code> and <code>gg_hex</code> limits.</li>
 </ul></div>
     <div class="section level2">
