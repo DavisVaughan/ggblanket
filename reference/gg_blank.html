@@ -62,22 +62,29 @@
 <span>  facet <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xmin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xend <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xlower <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xupper <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xmiddle <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ymin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ymax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  yend <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylower <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  yupper <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ymiddle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sample <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subgroup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
+<span>  clip <span class="op">=</span> <span class="st">"on"</span>,</span>
 <span>  pal <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pal_na <span class="op">=</span> <span class="st">"#7F7F7F"</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -115,7 +122,8 @@
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  theme <span class="op">=</span> <span class="fu"><a href="gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  titles <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span>,</span>
+<span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -149,10 +157,6 @@
 <dd><p>Unquoted group aesthetic variable.</p></dd>
 
 
-<dt>label</dt>
-<dd><p>Unquoted label aesthetic variable.</p></dd>
-
-
 <dt>xmin</dt>
 <dd><p>Unquoted xmin aesthetic variable.</p></dd>
 
@@ -165,6 +169,18 @@
 <dd><p>Unquoted xend aesthetic variable.</p></dd>
 
 
+<dt>xlower</dt>
+<dd><p>Unquoted xlower aesthetic variable.</p></dd>
+
+
+<dt>xupper</dt>
+<dd><p>Unquoted xupper aesthetic variable.</p></dd>
+
+
+<dt>xmiddle</dt>
+<dd><p>Unquoted xmiddle aesthetic variable.</p></dd>
+
+
 <dt>ymin</dt>
 <dd><p>Unquoted ymin aesthetic variable.</p></dd>
 
@@ -174,7 +190,31 @@
 
 
 <dt>yend</dt>
-<dd><p>Unquoted xend aesthetic variable.</p></dd>
+<dd><p>Unquoted yend aesthetic variable.</p></dd>
+
+
+<dt>ylower</dt>
+<dd><p>Unquoted ylower aesthetic variable.</p></dd>
+
+
+<dt>yupper</dt>
+<dd><p>Unquoted yupper aesthetic variable.</p></dd>
+
+
+<dt>ymiddle</dt>
+<dd><p>Unquoted ymiddle aesthetic variable.</p></dd>
+
+
+<dt>sample</dt>
+<dd><p>Unquoted sample aesthetic variable.</p></dd>
+
+
+<dt>label</dt>
+<dd><p>Unquoted label aesthetic variable.</p></dd>
+
+
+<dt>subgroup</dt>
+<dd><p>Unquoted subgroup aesthetic variable.</p></dd>
 
 
 <dt>stat</dt>
@@ -183,6 +223,10 @@
 
 <dt>position</dt>
 <dd><p>Position adjustment. Either a character string (e.g."identity"), or a function (e.g. ggplot2::position_identity()).</p></dd>
+
+
+<dt>clip</dt>
+<dd><p>Whether to clip geometries outside of the panel. Either "on" or "off".</p></dd>
 
 
 <dt>pal</dt>
@@ -194,11 +238,7 @@
 
 
 <dt>...</dt>
-<dd><p>Other arguments passed to the relevant ggplot2::geom_* function.</p></dd>
-
-
-<dt>titles</dt>
-<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
+<dd><p>Other arguments passed to the ggplot2::geom_blank function.</p></dd>
 
 
 <dt>title</dt>
@@ -207,10 +247,6 @@
 
 <dt>subtitle</dt>
 <dd><p>Subtitle string.</p></dd>
-
-
-<dt>coord</dt>
-<dd><p>Coordinate system.</p></dd>
 
 
 <dt>x_breaks</dt>
@@ -234,7 +270,7 @@
 
 
 <dt>x_limits</dt>
-<dd><p>A vector of length 2 to determine the limits of the axis. Alternatively, zoom in using coord = coord_cartesian(xlim = ...).</p></dd>
+<dd><p>A vector of length 2 to determine the limits of the axis (and the zoom via the coord).</p></dd>
 
 
 <dt>x_sec_axis</dt>
@@ -270,7 +306,7 @@
 
 
 <dt>y_limits</dt>
-<dd><p>A vector of length 2 to determine the limits of the axis. Alternatively, zoom in using coord = coord_cartesian(ylim = ...).</p></dd>
+<dd><p>A vector of length 2 to determine the limits of the axis (and the zoom via the coord).</p></dd>
 
 
 <dt>y_sec_axis</dt>
@@ -361,6 +397,10 @@
 <dd><p>Caption title string.</p></dd>
 
 
+<dt>titles</dt>
+<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
+
+
 <dt>theme</dt>
 <dd><p>A ggplot2 theme.</p></dd>
 
@@ -376,19 +416,45 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">mtcars</span>, x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class="r-plt img"><img src="gg_blank-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">mtcars</span>, x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span>, col <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, binwidth <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `binwidth`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class="r-plt img"><img src="gg_blank-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">gg_blank</span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span>, col <span class="op">=</span> <span class="va">cyl</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `size`</span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, bins <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `bins`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class="r-plt img"><img src="gg_blank-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, y <span class="op">=</span> <span class="va">carat</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gg_blank-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">price</span>, col <span class="op">=</span> <span class="va">cut</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-plt img"><img src="gg_blank-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">gg_blank</span><span class="op">(</span><span class="va">diamonds</span>, x <span class="op">=</span> <span class="va">price</span>, col <span class="op">=</span> <span class="va">cut</span>, position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Stacking requires either the <span style="color: #00BB00;">ymin</span> <span style="font-style: italic;">and</span> <span style="color: #00BB00;">ymin</span> or the <span style="color: #00BB00;">y</span> aesthetics</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Maybe you want `position = "identity"`?</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Stacking requires either the <span style="color: #00BB00;">ymin</span> <span style="font-style: italic;">and</span> <span style="color: #00BB00;">ymin</span> or the <span style="color: #00BB00;">y</span> aesthetics</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Maybe you want `position = "identity"`?</span>
+<span class="r-plt img"><img src="gg_blank-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

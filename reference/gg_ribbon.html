@@ -62,21 +62,19 @@
 <span>  facet <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xmin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ymin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ymax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
+<span>  clip <span class="op">=</span> <span class="st">"on"</span>,</span>
 <span>  pal <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pal_na <span class="op">=</span> <span class="st">"#7F7F7F"</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  titles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  coord <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  x_breaks <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_expand <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -114,7 +112,8 @@
 <span>  facet_space <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  facet_layout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  theme <span class="op">=</span> <span class="fu"><a href="gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  titles <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span>,</span>
+<span>  theme <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -148,10 +147,6 @@
 <dd><p>Unquoted group aesthetic variable.</p></dd>
 
 
-<dt>text</dt>
-<dd><p>Unquoted text aesthetic variable, which can be used in combination with plotly::ggplotly(., tooltip = "text").</p></dd>
-
-
 <dt>xmin</dt>
 <dd><p>Unquoted xmin aesthetic variable.</p></dd>
 
@@ -176,6 +171,10 @@
 <dd><p>Position adjustment. Either a character string (e.g."identity"), or a function (e.g. ggplot2::position_identity()).</p></dd>
 
 
+<dt>clip</dt>
+<dd><p>Whether to clip geometries outside of the panel. Either "on" or "off".</p></dd>
+
+
 <dt>pal</dt>
 <dd><p>Colours to use. A character vector of hex codes (or names).</p></dd>
 
@@ -189,11 +188,7 @@
 
 
 <dt>...</dt>
-<dd><p>Other arguments passed to the relevant ggplot2::geom_* function.</p></dd>
-
-
-<dt>titles</dt>
-<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
+<dd><p>Other arguments passed to the ggplot2::geom_ribbon function.</p></dd>
 
 
 <dt>title</dt>
@@ -202,10 +197,6 @@
 
 <dt>subtitle</dt>
 <dd><p>Subtitle string.</p></dd>
-
-
-<dt>coord</dt>
-<dd><p>Coordinate system.</p></dd>
 
 
 <dt>x_breaks</dt>
@@ -229,7 +220,7 @@
 
 
 <dt>x_limits</dt>
-<dd><p>A vector of length 2 to determine the limits of the axis. Alternatively, zoom in using coord = coord_cartesian(xlim = ...).</p></dd>
+<dd><p>A vector of length 2 to determine the limits of the axis (and the zoom via the coord).</p></dd>
 
 
 <dt>x_sec_axis</dt>
@@ -265,7 +256,7 @@
 
 
 <dt>y_limits</dt>
-<dd><p>A vector of length 2 to determine the limits of the axis. Alternatively, zoom in using coord = coord_cartesian(ylim = ...).</p></dd>
+<dd><p>A vector of length 2 to determine the limits of the axis (and the zoom via the coord).</p></dd>
 
 
 <dt>y_sec_axis</dt>
@@ -356,6 +347,10 @@
 <dd><p>Caption title string.</p></dd>
 
 
+<dt>titles</dt>
+<dd><p>A function to format the x, y and col titles. Defaults to snakecase::to_sentence_case.</p></dd>
+
+
 <dt>theme</dt>
 <dd><p>A ggplot2 theme.</p></dd>
 
@@ -382,10 +377,11 @@
 <span class="r-plt img"><img src="gg_ribbon-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">huron</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>level_min <span class="op">=</span> <span class="va">level</span> <span class="op">-</span> <span class="fl">1</span>, level_max <span class="op">=</span> <span class="va">level</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gg_ribbon</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">year</span>,</span></span>
-<span class="r-in"><span>    ymin <span class="op">=</span> <span class="va">level</span> <span class="op">-</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    ymax <span class="op">=</span> <span class="va">level</span> <span class="op">+</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    ymin <span class="op">=</span> <span class="va">level_min</span>,</span></span>
+<span class="r-in"><span>    ymax <span class="op">=</span> <span class="va">level_max</span>,</span></span>
 <span class="r-in"><span>    pal <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/alpha.html" class="external-link">alpha</a></span><span class="op">(</span><span class="fu"><a href="pal_viridis_mix.html">pal_viridis_mix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">level</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="pal_viridis_mix.html">pal_viridis_mix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gg_ribbon-2.png" alt="" width="700" height="433"></span>
