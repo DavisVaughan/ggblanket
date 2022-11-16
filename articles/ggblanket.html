@@ -475,16 +475,20 @@ However… if you do not want any magic and want your theme to adjust <em>everyt
 <span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Width</span>,</span>
 <span>           y <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
 <span>           col <span class="op">=</span> <span class="va">Species</span>,</span>
-<span>           facet <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           facet <span class="op">=</span> <span class="va">Species</span>, </span>
+<span>           theme <span class="op">=</span> <span class="fu"><a href="../reference/gg_theme.html">gg_theme</a></span><span class="op">(</span><span class="st">"helvetica"</span><span class="op">)</span>,</span>
+<span>           facet_labels <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggiraph</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/ggiraph/reference/geom_point_interactive.html" class="external-link">geom_point_interactive</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>tooltip <span class="op">=</span> <span class="va">tooltip</span>, data_id <span class="op">=</span> <span class="va">id</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">girafe</span><span class="op">(</span></span>
 <span>  ggobj <span class="op">=</span> <span class="va">p</span>,</span>
 <span>  width_svg <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>  height_svg <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">opts_hover</span><span class="op">(</span>css <span class="op">=</span> <span class="st">"fill:red; stroke: red"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  height_svg <span class="op">=</span> <span class="fl">3.25</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu">opts_tooltip</span><span class="op">(</span>use_fill <span class="op">=</span> <span class="cn">TRUE</span>, use_stroke <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    <span class="fu">opts_hover</span><span class="op">(</span>css <span class="op">=</span> <span class="st">"fill: #d62728; stroke: #d62728"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="../reference/figures/ggplotly_screenshot.png" width="70%"></p>
+<p><img src="../reference/figures/ggiraph_screenshot.png" width="70%"></p>
 </div>
 </div>
 <div class="section level2">
