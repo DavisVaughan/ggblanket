@@ -110,8 +110,7 @@
 </h2>
 <p>To simplify ggplot2 visualisation, the ggblanket package provides:</p>
 <ol style="list-style-type: decimal">
-<li>
-<code>gg_*</code> wrapper functions to plot a single geom</li>
+<li>Over thirty <code>gg_*</code> wrapper functions to plot a single geom</li>
 <li>A single <code>col</code> argument to colour and fill by a variable</li>
 <li>A <code>facet</code> argument to facet by a variable</li>
 <li>An additional <code>facet2</code> argument to facet by a second variable</li>
@@ -126,15 +125,19 @@
 </li>
 <li>A <code>theme</code> argument to customise the look and feel</li>
 <li>A <code>gg_theme</code> function to create a quick theme</li>
+<li>Compatibility with the <code>ggtext</code> package to adjust titles etc with markdown</li>
+<li>Compatibility with the <code>patchwork</code> package to join plots together</li>
+<li>Compatibility with the <code>ggiraph</code> package to make interactive plots</li>
+<li>A hack to use other non-supported aesthetics</li>
 <li>A base from which to create custom plot functions with your own defaults</li>
-<li>Works with the <code>patchwork</code> package</li>
-<li>Works with the <code>ggiraph</code> package</li>
-<li>Works with the <code>ggtext</code> package</li>
+<li>Ability to work with multiple geom layers, if care is taken</li>
+<li>Compatibility with many other non-supported geoms with <code>gg_blank</code>
+</li>
 </ol>
 <div class="section level3">
-<h3 id="gg_-wrapper-functions-to-plot-a-single-geom">1. <code>gg_*</code> wrapper functions to plot a single geom<a class="anchor" aria-label="anchor" href="#gg_-wrapper-functions-to-plot-a-single-geom"></a>
+<h3 id="over-thirty-gg_-wrapper-functions-to-plot-a-single-geom">1. Over thirty <code>gg_*</code> wrapper functions to plot a single geom<a class="anchor" aria-label="anchor" href="#over-thirty-gg_-wrapper-functions-to-plot-a-single-geom"></a>
 </h3>
-<p>ggblanket provides over 30 <code>gg_*</code> functions. This is the majority of the geoms in ggplot2.</p>
+<p>ggblanket supports the majority of geoms in ggplot2.</p>
 <p>Each <code>gg_*</code>function wraps a ggplot2 <code>ggplot(aes(...))</code> function with the applicable ggplot2 <code>geom_*()</code> function.</p>
 <p>All aesthetics are within the <code>ggplot</code> function, and therefore will inherit to any subsequent geom’s added by default.</p>
 <p>Always pipe in your data, so that you can access variable names from the Rstudio autocomplete.</p>
@@ -149,7 +152,7 @@
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-2-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-single-col-argument-to-colour-and-fill-by-a-variable">2.A single <code>col</code> argument to colour and fill by a variable<a class="anchor" aria-label="anchor" href="#a-single-col-argument-to-colour-and-fill-by-a-variable"></a>
+<h3 id="a-single-col-argument-to-colour-and-fill-by-a-variable">2. A single <code>col</code> argument to colour and fill by a variable<a class="anchor" aria-label="anchor" href="#a-single-col-argument-to-colour-and-fill-by-a-variable"></a>
 </h3>
 <p>{ggblanket} merges the col and fill aesthetics of ggplot2 into one concept represented by the <code>col</code> argument. In ggplot2 language, this argument always represents both col and fill.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -368,7 +371,9 @@
 <h3 id="access-to-other-geom_-arguments-via----">11. Access to other <code>geom_*</code> arguments via <code>...</code><a class="anchor" aria-label="anchor" href="#access-to-other-geom_-arguments-via----"></a>
 </h3>
 <p>This relates to all other arguments other than the mapping argument with aesthetics.</p>
-<p>Common arguments to add are <code>size</code>, <code>linewidth</code> and <code>width</code>. All arguments and can be identified through the help on the relevant <code>ggplot2::geom_*</code> function.</p>
+<p>All arguments and can be identified through the help on the relevant <code>ggplot2::geom_*</code> function.</p>
+<p>Common arguments to add are <code>size</code>, <code>linewidth</code> and <code>width</code>.</p>
+<p>Additionally, you can use the <code>colour</code> or <code>fill</code> arguments to turn off part of the ggblanket col aesthetic (e.g. <code>colour = NA</code> or <code>fill = NA</code>), or fix it to single colour.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -376,11 +381,12 @@
 <span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
 <span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
 <span>    col <span class="op">=</span> <span class="va">sex</span>,</span>
-<span>    size <span class="op">=</span> <span class="fl">0.5</span>, </span>
-<span>    level <span class="op">=</span> <span class="fl">0.99</span>, </span>
+<span>    linewidth <span class="op">=</span> <span class="fl">0.5</span>, <span class="co">#accessed via geom_smooth</span></span>
+<span>    level <span class="op">=</span> <span class="fl">0.99</span>, <span class="co">#accessed via geom_smooth</span></span>
 <span>    col_legend_place <span class="op">=</span> <span class="st">"t"</span>,</span>
 <span>    col_title <span class="op">=</span> <span class="st">""</span>, </span>
-<span>    col_labels <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span></span>
+<span>    col_labels <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span>, </span>
+<span>    colour <span class="op">=</span> <span class="st">"white"</span> <span class="co">#accessed via geom_smooth</span></span>
 <span>  <span class="op">)</span> </span></code></pre></div>
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-12-1.png" width="70%"></p>
 </div>
@@ -429,41 +435,21 @@ However… if you do not want any magic and want your theme to adjust <em>everyt
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-14-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="a-base-from-which-to-create-custom-plot-functions-with-your-own-defaults">14. A base from which to create custom plot functions with your own defaults<a class="anchor" aria-label="anchor" href="#a-base-from-which-to-create-custom-plot-functions-with-your-own-defaults"></a>
+<h3 id="compatibility-with-the-ggtext-package-to-adjust-titles-etc-with-markdown">14. Compatibility with the <code>ggtext</code> package to adjust titles etc with markdown<a class="anchor" aria-label="anchor" href="#compatibility-with-the-ggtext-package-to-adjust-titles-etc-with-markdown"></a>
 </h3>
-<p>You can easily create powerful custom functions. This is because the <code>...</code> argument can allow you to access <em>all</em> arguments within the ggblanket <code>gg_*</code> function (and applicable <code>ggplot2::geom_*</code> function).</p>
+<p>If you wish to have a markdown title, make sure the face is plain, and then add the applicable theme layer with <code>element_markdown</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gg_point_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">col</span>, </span>
-<span>                            <span class="va">size</span> <span class="op">=</span> <span class="fl">3</span>, </span>
-<span>                            <span class="va">shape</span> <span class="op">=</span> <span class="fl">17</span>,</span>
-<span>                            <span class="va">pal</span> <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, </span>
-<span>                            <span class="va">col_title</span> <span class="op">=</span> <span class="st">""</span>, </span>
-<span>                            <span class="va">col_legend_place</span> <span class="op">=</span> <span class="st">"t"</span>,</span>
-<span>                            <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">data</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="../reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">x</span> <span class="op">}</span><span class="op">}</span>, y <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">y</span> <span class="op">}</span><span class="op">}</span>, col <span class="op">=</span> <span class="op">{</span><span class="op">{</span><span class="va">col</span><span class="op">}</span><span class="op">}</span>, </span>
-<span>             size <span class="op">=</span> <span class="va">size</span>, </span>
-<span>             shape <span class="op">=</span> <span class="va">shape</span>,</span>
-<span>             pal <span class="op">=</span> <span class="va">pal</span>, </span>
-<span>             col_title <span class="op">=</span> <span class="va">col_title</span>, </span>
-<span>             col_legend_place <span class="op">=</span> <span class="va">col_legend_place</span>, </span>
-<span>             <span class="va">...</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
+<code class="sourceCode R"><span><span class="va">nc</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shape/nc.shp"</span>, package <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">iris</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Species <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gg_point_custom</span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">Sepal.Width</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
-<span>    col <span class="op">=</span> <span class="va">Species</span>, </span>
-<span>    title <span class="op">=</span> <span class="st">"Edgar Anderson's iris data"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Iris sepal length by width and species"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Edgar Anderson, 1935"</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<span><span class="va">nc</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gg_sf.html">gg_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">AREA</span>,</span>
+<span>        title <span class="op">=</span> <span class="st">"**Bold** or _italics_ or &lt;span style = 'color:red;'&gt;red&lt;/span&gt;"</span>,</span>
+<span>        theme <span class="op">=</span> <span class="fu"><a href="../reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>title_face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-15-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="works-with-the-patchwork-package">15. Works with the <code>patchwork</code> package<a class="anchor" aria-label="anchor" href="#works-with-the-patchwork-package"></a>
+<h3 id="compatibility-with-the-patchwork-package-to-join-plots-together">15. Compatibility with the <code>patchwork</code> package to join plots together<a class="anchor" aria-label="anchor" href="#compatibility-with-the-patchwork-package-to-join-plots-together"></a>
 </h3>
 <p>As <code>ggblanket</code> output objects are ggplot’s, it works fine with the patchwork,</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -485,7 +471,7 @@ However… if you do not want any magic and want your theme to adjust <em>everyt
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-16-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="works-with-the-ggiraph-package">16. Works with the <code>ggiraph</code> package<a class="anchor" aria-label="anchor" href="#works-with-the-ggiraph-package"></a>
+<h3 id="compatibility-with-the-ggiraph-package-to-make-interactive-plots">16. Compatibility with the <code>ggiraph</code> package to make interactive plots<a class="anchor" aria-label="anchor" href="#compatibility-with-the-ggiraph-package-to-make-interactive-plots"></a>
 </h3>
 <p>By using the powerful <code>gg_blank</code> function, you can then use then access the interactivity of <code>ggiraph</code>.</p>
 <p>When using <code>gg_blank</code>, be sure to change the stat to that which will be in your subsequent layer, so that the scales are built appropriately.</p>
@@ -517,35 +503,81 @@ However… if you do not want any magic and want your theme to adjust <em>everyt
 <span>    <span class="fu"><a href="https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html" class="external-link">opts_tooltip</a></span><span class="op">(</span>use_fill <span class="op">=</span> <span class="cn">TRUE</span>, use_stroke <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://davidgohel.github.io/ggiraph/reference/opts_hover.html" class="external-link">opts_hover</a></span><span class="op">(</span>css <span class="op">=</span> <span class="st">"fill: #d62728; stroke: #d62728"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="a-hack-to-use-other-non-supported-aesthetics">17. A hack to use other non-supported aesthetics<a class="anchor" aria-label="anchor" href="#a-hack-to-use-other-non-supported-aesthetics"></a>
+</h3>
+<p><code>gg_*</code> functions do not directly support aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>. However, you can use <code>gg_blank</code>. The hack is to make your additional aesthetic equivalent to the <code>col</code> aesthetic. If you do not want things to be coloured by the aesthetic, you need to make the <code>pal</code> the same colour for each of the values in the <code>col</code> aesthetic. You will need to make the titles of the legend equivalent, so that the legend can be merged into one. The examples below demonstrate how this works for an alpha aesthetic.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
+<span>    col <span class="op">=</span> <span class="va">species</span>,</span>
+<span>    pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/pal_viridis_mix.html">pal_viridis_mix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>, </span>
+<span>    col_legend_ncol <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_alpha_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>, </span>
+<span>    y <span class="op">=</span> <span class="va">body_mass_g</span>, </span>
+<span>    col <span class="op">=</span> <span class="va">species</span>, </span>
+<span>    col_legend_ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_alpha_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-18-1.png" width="70%"></p>
+</div>
+<div class="section level3">
+<h3 id="a-base-from-which-to-create-custom-plot-functions-with-your-own-defaults">18. A base from which to create custom plot functions with your own defaults<a class="anchor" aria-label="anchor" href="#a-base-from-which-to-create-custom-plot-functions-with-your-own-defaults"></a>
+</h3>
+<p>You can easily create powerful custom functions. This is because the <code>...</code> argument can allow you to access <em>all</em> arguments within the ggblanket <code>gg_*</code> function (and applicable <code>ggplot2::geom_*</code> function).</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gg_point_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">col</span>, </span>
+<span>                            <span class="va">size</span> <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>                            <span class="va">shape</span> <span class="op">=</span> <span class="fl">17</span>,</span>
+<span>                            <span class="va">pal</span> <span class="op">=</span> <span class="fu">pals</span><span class="fu">::</span><span class="fu"><a href="https://kwstat.github.io/pals/reference/brewer.html" class="external-link">brewer.dark2</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, </span>
+<span>                            <span class="va">col_title</span> <span class="op">=</span> <span class="st">""</span>, </span>
+<span>                            <span class="va">col_legend_place</span> <span class="op">=</span> <span class="st">"t"</span>,</span>
+<span>                            <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">data</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="../reference/gg_point.html">gg_point</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">x</span> <span class="op">}</span><span class="op">}</span>, y <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">y</span> <span class="op">}</span><span class="op">}</span>, col <span class="op">=</span> <span class="op">{</span><span class="op">{</span><span class="va">col</span><span class="op">}</span><span class="op">}</span>, </span>
+<span>             size <span class="op">=</span> <span class="va">size</span>, </span>
+<span>             shape <span class="op">=</span> <span class="va">shape</span>,</span>
+<span>             pal <span class="op">=</span> <span class="va">pal</span>, </span>
+<span>             col_title <span class="op">=</span> <span class="va">col_title</span>, </span>
+<span>             col_legend_place <span class="op">=</span> <span class="va">col_legend_place</span>, </span>
+<span>             <span class="va">...</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">iris</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Species <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">gg_point_custom</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Sepal.Width</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
+<span>    col <span class="op">=</span> <span class="va">Species</span>, </span>
+<span>    title <span class="op">=</span> <span class="st">"Edgar Anderson's iris data"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Iris sepal length by width and species"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Edgar Anderson, 1935"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-19-1.png" width="70%"></p>
 <p><img src="../reference/figures/ggiraph_screenshot.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="works-with-the-ggtext-package">17. Works with the <code>ggtext</code> package<a class="anchor" aria-label="anchor" href="#works-with-the-ggtext-package"></a>
-</h3>
-<p>If you wish to have a markdown title, make sure the face is plain, and then add the applicable theme layer with <code>element_markdown</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nc</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shape/nc.shp"</span>, package <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">nc</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/gg_sf.html">gg_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">AREA</span>,</span>
-<span>        title <span class="op">=</span> <span class="st">"**Bold** or _italics_ or &lt;span style = 'color:red;'&gt;red&lt;/span&gt;"</span>,</span>
-<span>        theme <span class="op">=</span> <span class="fu"><a href="../reference/gg_theme.html">gg_theme</a></span><span class="op">(</span>title_face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-19-1.png" width="70%"></p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="challenges">Challenges<a class="anchor" aria-label="anchor" href="#challenges"></a>
-</h2>
-<div class="section level3">
-<h3 id="multiple-geom-layers">Multiple geom layers<a class="anchor" aria-label="anchor" href="#multiple-geom-layers"></a>
+<h3 id="ability-to-work-with-multiple-geom-layers-if-care-is-taken">19. Ability to work with multiple geom layers, if care is taken<a class="anchor" aria-label="anchor" href="#ability-to-work-with-multiple-geom-layers-if-care-is-taken"></a>
 </h3>
 <p>For <em>all</em> plots with multiple geom’s, you will need to think about if there is any desired drawing order you want, and if so choose the <code>gg_*</code> function that permits this order.</p>
 <p>For plots where some geoms have a<code>col</code> aesthetic and some do not, you must choose a <code>gg_*</code> function that relates to one of the layers with a <code>col</code> argument. Or, if this conflicts with the desired drawing order, then choose <code>gg_blank</code> with the <code>col</code> argument.</p>
 <p>Once you know what <code>gg_*</code> function you are going to use, then you might need to use the <code>*_include</code> argument to adjust the x or y scale if it will not include all of the range needed by subsequent layers.</p>
 <p>If subsequent layers do <em>not</em> require all of the aesthetics from the <code>gg_*</code> function, use the <code>inherit.aes = FALSE</code> argument in the <code>geom_*</code> function.</p>
 <p>For example, to make a coloured column graph with grey error bars, use the <code>gg_col</code> function as this layer has a col aesthetic and the drawing order means it should be underneath the errorbars.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  trt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
@@ -570,69 +602,26 @@ However… if you do not want any magic and want your theme to adjust <em>everyt
 <span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.66</span><span class="op">)</span>,</span>
 <span>    width <span class="op">=</span> <span class="fl">0.1</span></span>
 <span>    <span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-20-1.png" width="70%"></p>
-</div>
-<div class="section level3">
-<h3 id="other-aesthetics">Other aesthetics<a class="anchor" aria-label="anchor" href="#other-aesthetics"></a>
-</h3>
-<p><code>gg_*</code> functions do not directly support aesthetics of <code>alpha</code>, <code>size</code>, <code>linewidth</code>, <code>shape</code>, and <code>linetype</code>. However, you can use <code>gg_blank</code>. The hack is to make your additional aesthetic equivalent to the <code>col</code> aesthetic. If you do not want things to be coloured by the aesthetic, you need to make the <code>pal</code> the same colour for each of the values in the <code>col</code> aesthetic. You will need to make the titles of the legend equivalent, so that the legend can be merged into one. The examples below demonstrate how this works for an alpha aesthetic.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
-<span>    col <span class="op">=</span> <span class="va">species</span>,</span>
-<span>    pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/pal_viridis_mix.html">pal_viridis_mix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>, </span>
-<span>    col_legend_ncol <span class="op">=</span> <span class="fl">2</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_alpha_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>, </span>
-<span>    y <span class="op">=</span> <span class="va">body_mass_g</span>, </span>
-<span>    col <span class="op">=</span> <span class="va">species</span>, </span>
-<span>    col_legend_ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_alpha_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
 <p><img src="ggblanket_files/figure-html/unnamed-chunk-21-1.png" width="70%"></p>
 </div>
 <div class="section level3">
-<h3 id="making-part-of-the-col-aesthetic-fixed-or-off">Making <em>part</em> of the col aesthetic fixed or off<a class="anchor" aria-label="anchor" href="#making-part-of-the-col-aesthetic-fixed-or-off"></a>
+<h3 id="compatibility-with-many-other-non-supported-geoms-with-gg_blank">20. Compatibility with many other non-supported geoms with `gg_blank``<a class="anchor" aria-label="anchor" href="#compatibility-with-many-other-non-supported-geoms-with-gg_blank"></a>
 </h3>
-<p>In ggblanket, the <code>col</code> aesthetic refers to both the ggplot2 colour and fill aesthetics. If you wish to turn off one of these, or set it to a fixed colour, you can via the … arguments which access the geom_* function. Use <code>colour = NA</code> or <code>fill = NA</code> to turn off part of the <code>col</code> aesthetic, or <code>colour = "red"</code> or <code>fill = "red"</code> to fix part of the colour aesthetic to a colour.</p>
+<p>You may or may not be able to work with other non-supported geom’s by using <code>gg_blank</code>, depending on what the stat is in the function. If the stat is “identity” or another stat used by ggblanket, it can work <code>gg_blank</code> and that stat referenced. For other stat’s, it depends on the nature of the stat.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/gg_boxplot.html">gg_boxplot</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">species</span>,</span>
-<span>    col <span class="op">=</span> <span class="va">sex</span>,</span>
-<span>    colour <span class="op">=</span> <span class="st">"#232323"</span>,</span>
-<span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge2</a></span><span class="op">(</span>preserve <span class="op">=</span> <span class="st">"single"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-22-1.png" width="70%"></p>
-</div>
-<div class="section level3">
-<h3 id="other-non-supported-geoms">Other non-supported geoms<a class="anchor" aria-label="anchor" href="#other-non-supported-geoms"></a>
-</h3>
-<p>You may or may not be able to work with other geom’s by using <code>gg_blank</code>, depending on what the stat is in the function. If the stat is “identity” or another stat used by ggblanket, it will work <code>gg_blank</code> and that stat referenced. For other stat’s, it depends on the nature of the stat.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Species <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html" class="external-link">str_to_sentence</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_blank.html">gg_blank</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
-<span>    col <span class="op">=</span> <span class="va">species</span>,</span>
-<span>    col_legend_place <span class="op">=</span> <span class="st">"r"</span></span>
+<span>    x <span class="op">=</span> <span class="va">Sepal.Width</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
+<span>    col <span class="op">=</span> <span class="va">Species</span>,</span>
+<span>    facet <span class="op">=</span> <span class="va">Species</span>,</span>
+<span>    col_legend_place <span class="op">=</span> <span class="st">"r"</span>,</span>
+<span>    col_labels <span class="op">=</span> <span class="fu">snakecase</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/snakecase/man/caseconverter.html" class="external-link">to_sentence_case</a></span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggdensity</span><span class="fu">::</span><span class="fu"><a href="https://jamesotto852.github.io/ggdensity/reference/geom_hdr.html" class="external-link">geom_hdr</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="st">"Probs"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggblanket_files/figure-html/unnamed-chunk-23-1.png" width="70%"></p>
+<p><img src="ggblanket_files/figure-html/unnamed-chunk-22-1.png" width="70%"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
