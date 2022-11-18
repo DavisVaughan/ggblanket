@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggblanket</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,7 +152,7 @@
 <div class="section level3">
 <h3 id="a-single-col-argument-to-colour-and-fill-by-a-variable">2. A single <code>col</code> argument to colour and fill by a variable<a class="anchor" aria-label="anchor" href="#a-single-col-argument-to-colour-and-fill-by-a-variable"></a>
 </h3>
-<p>ggblanket merges the col and fill aesthetics of ggplot2 into one concept represented by the <code>col</code> argument. In ggplot2 language, this argument always represents both col and fill.</p>
+<p>ggblanket merges the col and fill aesthetics of ggplot2 into one concept represented by the <code>col</code> argument. In ggplot2 language, this argument always represents both colour and fill.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gg_histogram.html">gg_histogram</a></span><span class="op">(</span></span>
@@ -278,7 +278,7 @@
 </h3>
 <p>This will make quicker to get to a plot that has titles that are good for external people to see, and will often work nicely for your <code>snakecase</code> column names.</p>
 <p>For titles that you need to change manually, you can change manually using <code>x_title</code>, <code>y_title</code>, or <code>col_title</code>.</p>
-<p>To remove titles, you can use <code>x_title = ""</code> within the <code>gg_*</code> function and equivalent for the y and col titles.</p>
+<p>To remove titles, you can use <code>x_title = ""</code> within the <code>gg_*</code> function and equivalent for the <code>y</code> and <code>col</code> titles.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -328,8 +328,8 @@
 <div class="section level3">
 <h3 id="horizontal-plots-with-y-labels-in-order-etc">9. Horizontal plots with y labels in order etc<a class="anchor" aria-label="anchor" href="#horizontal-plots-with-y-labels-in-order-etc"></a>
 </h3>
-<p>When plots are horizontal, ggblanket ensures y labels are in order.</p>
-<p>The position of bars, <code>pal</code> colours and legend elements will mostly be in the right order too.</p>
+<p>When plots are horizontal, ggblanket ensures <code>y</code> labels are in order.</p>
+<p>The position of bars, <code>pal</code>, colours and legend elements will generally be in the right order too.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
